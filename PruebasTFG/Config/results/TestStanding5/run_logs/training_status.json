@@ -1,0 +1,23 @@
+{
+    "StandingRagdoll": {
+        "checkpoints": [
+            {
+                "steps": 32997,
+                "file_path": "results\\TestStanding5\\StandingRagdoll\\StandingRagdoll-32997.nn",
+                "reward": -28.96613001515694,
+                "creation_time": 1604080894.7701938
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 32997,
+            "file_path": "results\\TestStanding5\\StandingRagdoll.nn",
+            "reward": -28.96613001515694,
+            "creation_time": 1604080894.7701938
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}

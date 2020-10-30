@@ -16,18 +16,19 @@ public class CharacterAgent : Agent {
     private BehaviorParameters _behaviorParameters;
 
     [Header("--- BODY ---")]
-    [SerializeField] private Rigidbody _physicalRoot;
+    [SerializeField] private Transform _physicalRoot;
     [SerializeField] private Transform _animatedRoot;
     [SerializeField] private Transform[] _supportBasis;
     private Vector3 _CoM, _CoS;  // Center of Mass & Center of Support
     private Vector3 _balanceVector;
     float _balanceAngle;
+    float _lastBalanceAngle;
 
-
-    private Transform[] AnimatedBones { get; set; }
-    private ConfigurableJoint[] Joints { get; set; }
-    private Rigidbody[] Rigidbodies { get; set; }
+    [SerializeField] private Transform[] _animatedBones;
+    [SerializeField] private ConfigurableJoint[] _joints;
+    [SerializeField] private Rigidbody[] _rigidbodies;
     private Quaternion[] _initialJointsRotation;
+    private Vector3[] _initialJointsPosition;
     private Vector3 _initialPosition;
 
     [Header("--- ANIMATORS ---")]
@@ -45,7 +46,7 @@ public class CharacterAgent : Agent {
             if (_animatedRoot == null)
                 _animatedRoot = _animatedAnimator.GetBoneTransform(HumanBodyBones.Hips);
             if (_physicalRoot == null)
-                _physicalRoot = _physicalAnimator.GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
+                _physicalRoot = _physicalAnimator.GetBoneTransform(HumanBodyBones.Hips);
 
             if (_supportBasis.Length == 0) {
                 _supportBasis = new Transform[2];
@@ -54,36 +55,48 @@ public class CharacterAgent : Agent {
             }
         }
 
-        AnimatedBones = _animatedRoot?.GetComponentsInChildren<Transform>();
-        Joints = _physicalRoot?.GetComponentsInChildren<ConfigurableJoint>();
-        Rigidbodies = _physicalRoot?.GetComponentsInChildren<Rigidbody>();
+        if (_animatedBones.Length == 0) _animatedBones = _animatedRoot?.GetComponentsInChildren<Transform>();
+        if (_joints.Length == 0) _joints = _physicalRoot?.GetComponentsInChildren<ConfigurableJoint>();
+        if (_rigidbodies.Length == 0) _rigidbodies = _physicalRoot?.GetComponentsInChildren<Rigidbody>();
+
+        if (_animatedBones.Length != _joints.Length)
+            Debug.LogError("Animated Bones, Joints and Rigidbodies (arrays) should all have the same length and be equivalent to each other.");
 
         _behaviorParameters = GetComponent<BehaviorParameters>();
         DefineObservationActionSpaces();
     }
 
     void DefineObservationActionSpaces() {
-        int physicalBoneRotations = Rigidbodies.Length * 4;
+        int physicalBoneRotations = _rigidbodies.Length * 4;
+        int targetRots = _rigidbodies.Length * 4;
         int balanceVector = 3;
-        // ENOUGH WITH BALANCE VECTOR? int uprightVector = 3; // upright vector normalized (-gravity, generally Vector.up)
-        // ENOUGH WITH BALANCE VECTOR? int balanceAngle = 1;
+        int angularVels = _rigidbodies.Length * 3;
+        int vels = _rigidbodies.Length * 3;
+        int supportBasis = _supportBasis.Length * 3;
+        int CoM = 3;
+        int CoS = 3;
 
-        _behaviorParameters.BrainParameters.VectorObservationSize = physicalBoneRotations + balanceVector;
+        // ENOUGH WITH BALANCE VECTOR? int uprightVector = 3; // upright vector normalized (-gravity, generally Vector.up)
+        int balanceAngle = 1;
+
+        _behaviorParameters.BrainParameters.VectorObservationSize = physicalBoneRotations + balanceVector + angularVels + vels + targetRots + balanceAngle + supportBasis + CoM + CoS;
 
         int targetRotations = physicalBoneRotations;
         _behaviorParameters.BrainParameters.VectorActionSize[0] = targetRotations;
     }
 
     void Start() {
-        foreach (Rigidbody rb in Rigidbodies) {
+        foreach (Rigidbody rb in _rigidbodies) {
             rb.solverIterations = _solverIterations;
             rb.solverVelocityIterations = _velSolverIterations;
             rb.maxAngularVelocity = _maxAngularVelocity;
         }
 
-        _initialJointsRotation = new Quaternion[Joints.Length];
-        for (int i = 0; i < Joints.Length; i++) {
-            _initialJointsRotation[i] = Joints[i].transform.localRotation;
+        _initialJointsRotation = new Quaternion[_joints.Length];
+        _initialJointsPosition = new Vector3[_joints.Length];
+        for (int i = 0; i < _joints.Length; i++) {
+            _initialJointsRotation[i] = _joints[i].transform.localRotation;
+            _initialJointsPosition[i] = _joints[i].transform.position;
         }
 
         _initialPosition = _physicalRoot.position;
@@ -92,6 +105,9 @@ public class CharacterAgent : Agent {
     private void FixedUpdate() {
         CalculateBalance();
         SyncAnimatedBody();
+
+        AddReward(_lastBalanceAngle - _balanceAngle);
+        _lastBalanceAngle = _balanceAngle;
 
         // TEMPORARILY DISABLED
         // UpdateJointTargets();
@@ -102,12 +118,13 @@ public class CharacterAgent : Agent {
         _CoM = Vector3.zero;
         float c = 0f;
 
-        foreach (Rigidbody rb in Rigidbodies) {
+        foreach (Rigidbody rb in _rigidbodies) {
             _CoM += rb.worldCenterOfMass * rb.mass;
             c += rb.mass;
         }
         _CoM /= c;
 
+        _CoS = Vector3.zero;
         // Calculate the center of support (generally the middle point of both feet)
         foreach (Transform support in _supportBasis)
             _CoS += support.position;
@@ -122,8 +139,8 @@ public class CharacterAgent : Agent {
 
     /// <summary> Makes the physical bones match the rotation of the animated ones </summary>
     private void UpdateJointTargets() {
-        for (int i = 0; i < Joints.Length; i++) {
-            ConfigurableJointExtensions.SetTargetRotationLocal(Joints[i], AnimatedBones[i + 1].localRotation, _initialJointsRotation[i]);
+        for (int i = 0; i < _joints.Length; i++) {
+            ConfigurableJointExtensions.SetTargetRotationLocal(_joints[i], _animatedBones[i + 1].localRotation, _initialJointsRotation[i]);
         }
     }
 
@@ -139,36 +156,45 @@ public class CharacterAgent : Agent {
     public override void OnEpisodeBegin() {
         _physicalRoot.position = _initialPosition;
 
-        for (int i = 0; i < Rigidbodies.Length; i++) {
-            Rigidbodies[i].angularVelocity = Vector3.zero;
-            Rigidbodies[i].velocity = Vector3.zero;
-            Rigidbodies[i].transform.localRotation = _initialJointsRotation[i];
+        for (int i = 0; i < _rigidbodies.Length; i++) {
+            _rigidbodies[i].angularVelocity = Vector3.zero;
+            _rigidbodies[i].velocity = Vector3.zero;
+            _rigidbodies[i].transform.localRotation = _initialJointsRotation[i];
+            _rigidbodies[i].transform.position = _initialJointsPosition[i];
         }
     }
 
 
     //Recoleccion de informacion necesaria para tomar decisiones
     public override void CollectObservations(VectorSensor sensor) {
-        foreach (Rigidbody rb in Rigidbodies) {
+        foreach (Rigidbody rb in _rigidbodies) {
             sensor.AddObservation(_feedAbsoluteRotations ? rb.rotation : rb.transform.localRotation);
+            sensor.AddObservation(rb.angularVelocity);
+            sensor.AddObservation(rb.velocity);
         }
+        foreach (ConfigurableJoint joint in _joints) {
+            sensor.AddObservation(joint.targetRotation);
+        }
+        foreach(Transform t in _supportBasis) {
+            sensor.AddObservation(t.position);
+        }
+
         sensor.AddObservation(_balanceVector);
+        sensor.AddObservation(_balanceAngle);
+        sensor.AddObservation(_CoM);
+        sensor.AddObservation(_CoS);
     }
 
     //Ejecuta las acciones y determina las recomensas. Recibe un vector con la información necesaria para llevar a cabo las acciones
     public override void OnActionReceived(float[] vectorAction) {
-        for (int i = 0; i < Joints.Length; i += 4) {
-            Quaternion q = new Quaternion(i, i + 1, i + 2, i + 3);
-            Joints[i].targetRotation = q;
+        for (int i = 0; i < _joints.Length; i += 4) {
+            Quaternion q = new Quaternion(vectorAction[i], vectorAction[i + 1], vectorAction[i + 2], vectorAction[i + 3]);
+            _joints[i].targetRotation = q;
         }
 
-
-        // ESTO SEGURAMENTE NO DEBA IR AQUI NI CALCULARSE ASI, TEMPORAL
-        if (_balanceAngle > 60) {
-            SetReward(-100.0f);
+        if (_balanceAngle > 40) {
+            AddReward(-10.0f);
             EndEpisode();
         }
-        else SetReward(1.0f);
-
     }
 }

@@ -1,0 +1,35 @@
+{
+    "StandingRagdoll": {
+        "checkpoints": [
+            {
+                "steps": 53210,
+                "file_path": "results\\TestStanding2\\StandingRagdoll\\StandingRagdoll-53210.nn",
+                "reward": -28.764549326013636,
+                "creation_time": 1604081639.6208568
+            },
+            {
+                "steps": 122056,
+                "file_path": "results\\TestStanding2\\StandingRagdoll\\StandingRagdoll-122056.nn",
+                "reward": 23.53838484546361,
+                "creation_time": 1604081820.3163238
+            },
+            {
+                "steps": 175337,
+                "file_path": "results\\TestStanding2\\StandingRagdoll\\StandingRagdoll-175337.nn",
+                "reward": -35.44177043460047,
+                "creation_time": 1604081930.5514896
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 175337,
+            "file_path": "results\\TestStanding2\\StandingRagdoll.nn",
+            "reward": -35.44177043460047,
+            "creation_time": 1604081930.5514896
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
