@@ -1,0 +1,35 @@
+{
+    "RollerBall": {
+        "checkpoints": [
+            {
+                "steps": 23729,
+                "file_path": "results\\Test1\\RollerBall\\RollerBall-23729.nn",
+                "reward": null,
+                "creation_time": 1603801787.810766
+            },
+            {
+                "steps": 83352,
+                "file_path": "results\\Test1\\RollerBall\\RollerBall-83352.nn",
+                "reward": null,
+                "creation_time": 1603809298.6070628
+            },
+            {
+                "steps": 93932,
+                "file_path": "results\\Test1\\RollerBall\\RollerBall-93932.nn",
+                "reward": 0.9090909090909091,
+                "creation_time": 1604061895.9218009
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 93932,
+            "file_path": "results\\Test1\\RollerBall.nn",
+            "reward": 0.9090909090909091,
+            "creation_time": 1604061895.9218009
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
