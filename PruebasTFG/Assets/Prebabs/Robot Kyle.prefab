@@ -103,7 +103,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8782176461647616019}
   - component: {fileID: 8279363790412607180}
-  - component: {fileID: 8279363790412607181}
   - component: {fileID: 8279363790412607183}
   m_Layer: 0
   m_Name: Left_Ankle_Joint_01
@@ -123,6 +122,7 @@ Transform:
   m_LocalPosition: {x: -0.43405014, y: -8.4273525e-18, z: -8.746468e-18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7761344170232425181}
   - {fileID: 26579880733904558}
   m_Father: {fileID: 266655598297925767}
   m_RootOrder: 0
@@ -143,19 +143,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &8279363790412607181
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859762953480922257}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.045730643
-  m_Center: {x: -0.031900167, y: -0.06749366, z: -2.704563e-11}
 --- !u!153 &8279363790412607183
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -742,7 +729,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8782176461647616019}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8279363790462226307
 Rigidbody:
@@ -1148,7 +1135,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.13740523, y: 0.013210984, z: 5.8207675e-11}
+  m_ConnectedAnchor: {x: 0.13740525, y: 0.013210985, z: -5.8207647e-11}
   serializedVersion: 2
   m_SecondaryAxis: {x: -1, y: 0, z: 0}
   m_XMotion: 0
@@ -1369,7 +1356,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.12213355, y: 0.011331957, z: 0.0689056}
+  m_ConnectedAnchor: {x: -0.12213354, y: 0.011331958, z: 0.0689056}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1484,6 +1471,50 @@ Transform:
   m_Father: {fileID: 5116471911189421991}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3276425260088280021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2733740764295265273}
+  - component: {fileID: 9205881137339271386}
+  m_Layer: 0
+  m_Name: Heel Colider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2733740764295265273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276425260088280021}
+  m_LocalRotation: {x: 0.0041613285, y: 0.0013120616, z: -0.3007029, w: 0.9537079}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7242003080189979625}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.5, y: 0, z: -35}
+--- !u!65 &9205881137339271386
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3276425260088280021}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08037024, y: 0.06592595, z: 0.08918349}
+  m_Center: {x: -0.010827241, y: 0.083661415, z: -0.0021381127}
 --- !u!1 &3313943906891319961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,7 +1779,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.3010112, y: -0.033259276, z: -0.16333061}
+  m_ConnectedAnchor: {x: -0.30101123, y: -0.03325928, z: -0.16333061}
   serializedVersion: 2
   m_SecondaryAxis: {x: 1, y: 0, z: 0}
   m_XMotion: 0
@@ -1968,7 +1999,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.12213364, y: 0.011331994, z: -0.068905555}
+  m_ConnectedAnchor: {x: -0.12213366, y: 0.011331993, z: -0.068905555}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2154,7 +2185,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7242003080189979625}
   - component: {fileID: 8279363789936133433}
-  - component: {fileID: 8279363789936133438}
   - component: {fileID: 8279363789936133439}
   m_Layer: 0
   m_Name: Right_Ankle_Joint_01
@@ -2174,6 +2204,7 @@ Transform:
   m_LocalPosition: {x: 0.43404976, y: 0.00000007899868, z: -1.7763568e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2733740764295265273}
   - {fileID: 5079350768186255824}
   m_Father: {fileID: 6967157481787272855}
   m_RootOrder: 0
@@ -2194,19 +2225,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &8279363789936133438
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573922534834619111}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.045730643
-  m_Center: {x: 0.04, y: 0.06, z: -2.704563e-11}
 --- !u!153 &8279363789936133439
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -2583,7 +2601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7242003080189979625}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8279363788864906655
 Rigidbody:
@@ -3020,7 +3038,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23837116, y: 0.03532484, z: -0.0012606196}
+  m_ConnectedAnchor: {x: -0.23837116, y: 0.035324775, z: -0.0012606047}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3104,6 +3122,50 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &8305264350296358656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7761344170232425181}
+  - component: {fileID: 2643444347027756042}
+  m_Layer: 0
+  m_Name: Heel Colider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7761344170232425181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305264350296358656}
+  m_LocalRotation: {x: 0.0013148123, y: -0.0041604587, z: -0.95390654, w: -0.30007207}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8782176461647616019}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.5, y: 0, z: -35}
+--- !u!65 &2643444347027756042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8305264350296358656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08037024, y: 0.06592595, z: 0.08918349}
+  m_Center: {x: -0.010827241, y: 0.083661415, z: -0.0021381127}
 --- !u!1 &8530454286623481709
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,7 +3497,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.24062023, y: 0.0051436387, z: -0.0121179465}
+  m_ConnectedAnchor: {x: 0.24062023, y: 0.0051436126, z: -0.012117977}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
