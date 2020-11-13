@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &831273524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 831273525}
+  m_Layer: 0
+  m_Name: Targets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &831273525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831273524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 984914124}
+  m_Father: {fileID: 7778972664552987335}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &984914123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 984914124}
+  m_Layer: 0
+  m_Name: HipTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &984914124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984914123}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.028992068, y: -0.0025938721, z: 1.22991095e-17}
+  m_LocalScale: {x: 30.1, y: 40, z: 28.4}
+  m_Children: []
+  m_Father: {fileID: 831273525}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128309253950693553
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +70,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4007219943693521570}
+  - component: {fileID: 1510688540}
+  - component: {fileID: 1510688541}
+  - component: {fileID: 1510688557}
   m_Layer: 0
   m_Name: Robot Kyle
   m_TagString: Untagged
@@ -32,6 +96,89 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510688540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128309253950693553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 0
+--- !u!114 &1510688541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128309253950693553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8211d142533694d4189ae853e28ac52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  _solverIterations: 13
+  _velSolverIterations: 13
+  _maxAngularVelocity: 50
+  _maxInclination: 50
+  _feedWorldRotations: 0
+  _physicalRoot: {fileID: 2184509804712236994}
+  _animatedRoot: {fileID: 6231616616592195579}
+  _bodyParts:
+  - {fileID: 1510688556}
+  - {fileID: 1510688555}
+  - {fileID: 1510688554}
+  - {fileID: 1510688553}
+  - {fileID: 1510688552}
+  - {fileID: 1510688551}
+  - {fileID: 1510688550}
+  - {fileID: 1510688549}
+  - {fileID: 1510688548}
+  - {fileID: 1510688547}
+  - {fileID: 1510688546}
+  - {fileID: 1510688545}
+  - {fileID: 1510688544}
+  - {fileID: 1510688543}
+  - {fileID: 1510688542}
+  _animatedAnimator: {fileID: 1242242338797852641}
+  _physicalAnimator: {fileID: 6614288882272951729}
+  _targets:
+  - bodyPart: {fileID: 6424594193860049629}
+    target: {fileID: 984914124}
+    maxDistance: 1
+--- !u!114 &1510688557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128309253950693553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 230
+    NumStackedVectorObservations: 1
+    VectorActionSize: 46000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 1
+  m_BehaviorType: 0
+  m_BehaviorName: StandingRagdoll
+  TeamId: 0
+  m_UseChildSensors: 1
 --- !u!1 &426928069957743990
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +251,7 @@ GameObject:
   - component: {fileID: 8782176461647616019}
   - component: {fileID: 8279363790412607180}
   - component: {fileID: 8279363790412607183}
+  - component: {fileID: 1510688553}
   m_Layer: 0
   m_Name: Left_Ankle_Joint_01
   m_TagString: Untagged
@@ -214,13 +362,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 10
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 10
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -238,6 +386,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859762953480922257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790412607180}
+  joint: {fileID: 8279363790412607183}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &895654547811426438
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +418,7 @@ GameObject:
   - component: {fileID: 8279363790144816147}
   - component: {fileID: 8279363790144816144}
   - component: {fileID: 8279363790144816146}
+  - component: {fileID: 1510688554}
   m_Layer: 0
   m_Name: Left_Knee_Joint_01
   m_TagString: Untagged
@@ -373,13 +542,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 400
+    positionDamper: 20
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -397,6 +566,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895654547811426438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790144816147}
+  joint: {fileID: 8279363790144816146}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &905791385378570420
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +598,7 @@ GameObject:
   - component: {fileID: 8279363789918670666}
   - component: {fileID: 8279363789918670667}
   - component: {fileID: 8279363789918670661}
+  - component: {fileID: 1510688544}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -530,13 +720,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 20
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 20
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -554,6 +744,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905791385378570420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363789918670666}
+  joint: {fileID: 8279363789918670661}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &1018551598601721456
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +856,7 @@ Transform:
   m_Children:
   - {fileID: 657711155413725799}
   - {fileID: 2184509804712236994}
+  - {fileID: 831273525}
   m_Father: {fileID: 4007219943693521570}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -710,6 +921,7 @@ GameObject:
   - component: {fileID: 8279363790462226307}
   - component: {fileID: 8279363790462226306}
   - component: {fileID: 8279363790462226304}
+  - component: {fileID: 1510688552}
   m_Layer: 0
   m_Name: Left_Toe_Joint_01
   m_TagString: Untagged
@@ -831,13 +1043,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 5
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 5
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -855,6 +1067,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411885633816801870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790462226307}
+  joint: {fileID: 8279363790462226304}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &1639417192494362243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1303,7 @@ GameObject:
   - component: {fileID: 8279363790759603858}
   - component: {fileID: 8279363790759603856}
   - component: {fileID: 8279363790759603859}
+  - component: {fileID: 1510688547}
   m_Layer: 0
   m_Name: Ribs
   m_TagString: Untagged
@@ -1135,7 +1368,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.13740525, y: 0.013210985, z: -5.8207647e-11}
+  m_ConnectedAnchor: {x: 0.13740523, y: 0.013210984, z: 5.8207675e-11}
   serializedVersion: 2
   m_SecondaryAxis: {x: -1, y: 0, z: 0}
   m_XMotion: 0
@@ -1195,13 +1428,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 400
+    positionDamper: 30
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 400
+    positionDamper: 30
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -1219,6 +1452,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2262139085412546229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790759603858}
+  joint: {fileID: 8279363790759603859}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &2566207253371574225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1546,7 @@ GameObject:
   - component: {fileID: 8279363788881526650}
   - component: {fileID: 8279363788881526648}
   - component: {fileID: 8279363788881526651}
+  - component: {fileID: 1510688551}
   m_Layer: 0
   m_Name: Right_Thigh_Joint_01
   m_TagString: Untagged
@@ -1356,7 +1610,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.12213354, y: 0.011331958, z: 0.0689056}
+  m_ConnectedAnchor: {x: -0.12213355, y: 0.011331957, z: 0.0689056}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1416,13 +1670,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 600
+    positionDamper: 30
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 500
+    positionDamper: 30
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -1440,6 +1694,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042272754529772351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363788881526650}
+  joint: {fileID: 8279363788881526651}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &3267557476106740829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1990,7 @@ GameObject:
   - component: {fileID: 8279363789994134072}
   - component: {fileID: 8279363789994134078}
   - component: {fileID: 8279363789994134073}
+  - component: {fileID: 1510688543}
   m_Layer: 0
   m_Name: Right_Upper_Arm_Joint_01
   m_TagString: Untagged
@@ -1779,7 +2054,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.30101123, y: -0.03325928, z: -0.16333061}
+  m_ConnectedAnchor: {x: -0.3010112, y: -0.033259276, z: -0.16333061}
   serializedVersion: 2
   m_SecondaryAxis: {x: 1, y: 0, z: 0}
   m_XMotion: 0
@@ -1839,13 +2114,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 250
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -1859,10 +2134,30 @@ ConfigurableJoint:
   m_SwapBodies: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 1
+  m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3759435829135401896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363789994134072}
+  joint: {fileID: 8279363789994134073}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &3888578717937792176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,6 +2231,7 @@ GameObject:
   - component: {fileID: 8279363790606704151}
   - component: {fileID: 8279363790606704149}
   - component: {fileID: 8279363790606704148}
+  - component: {fileID: 1510688555}
   m_Layer: 0
   m_Name: Left_Thigh_Joint_01
   m_TagString: Untagged
@@ -1999,7 +2295,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.12213366, y: 0.011331993, z: -0.068905555}
+  m_ConnectedAnchor: {x: -0.12213364, y: 0.011331994, z: -0.068905555}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2059,13 +2355,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 600
+    positionDamper: 30
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 500
+    positionDamper: 30
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2083,6 +2379,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651099079584200532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790606704151}
+  joint: {fileID: 8279363790606704148}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &5965333304833129642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,6 +2502,7 @@ GameObject:
   - component: {fileID: 7242003080189979625}
   - component: {fileID: 8279363789936133433}
   - component: {fileID: 8279363789936133439}
+  - component: {fileID: 1510688549}
   m_Layer: 0
   m_Name: Right_Ankle_Joint_01
   m_TagString: Untagged
@@ -2296,13 +2613,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 10
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 10
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2320,6 +2637,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573922534834619111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363789936133433}
+  joint: {fileID: 8279363789936133439}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &6626737386204679205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,6 +2699,7 @@ GameObject:
   - component: {fileID: 8279363789898027931}
   - component: {fileID: 8279363789898027928}
   - component: {fileID: 8279363789898027929}
+  - component: {fileID: 1510688550}
   m_Layer: 0
   m_Name: Right_Knee_Joint_01
   m_TagString: Untagged
@@ -2485,13 +2823,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 400
+    positionDamper: 20
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2509,6 +2847,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788953464750983903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363789898027931}
+  joint: {fileID: 8279363789898027929}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &6790472485066755982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,6 +2940,7 @@ GameObject:
   - component: {fileID: 8279363788864906655}
   - component: {fileID: 8279363788864906654}
   - component: {fileID: 8279363788864906652}
+  - component: {fileID: 1510688548}
   m_Layer: 0
   m_Name: Right_Toe_Joint_01
   m_TagString: Untagged
@@ -2703,13 +3062,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 5
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 5
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2727,6 +3086,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136738460567253769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363788864906655}
+  joint: {fileID: 8279363788864906652}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &7258412414537823765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,6 +3118,7 @@ GameObject:
   - component: {fileID: 8279363790955449454}
   - component: {fileID: 8279363790955449452}
   - component: {fileID: 8279363790955449455}
+  - component: {fileID: 1510688546}
   m_Layer: 0
   m_Name: Left_Upper_Arm_Joint_01
   m_TagString: Untagged
@@ -2862,13 +3242,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 300
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 250
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -2882,10 +3262,30 @@ ConfigurableJoint:
   m_SwapBodies: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 1
+  m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258412414537823765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790955449454}
+  joint: {fileID: 8279363790955449455}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &7354221487806476522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,6 +3389,7 @@ GameObject:
   - component: {fileID: 3192126453054785080}
   - component: {fileID: 8279363788984165640}
   - component: {fileID: 8279363788984165643}
+  - component: {fileID: 1510688545}
   m_Layer: 0
   m_Name: Left_Forearm_Joint_01
   m_TagString: Untagged
@@ -3038,7 +3439,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.23837116, y: 0.035324775, z: -0.0012606047}
+  m_ConnectedAnchor: {x: -0.23837116, y: 0.03532484, z: -0.0012606196}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3098,13 +3499,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3122,6 +3523,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247902847583474701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363788984165640}
+  joint: {fileID: 8279363788984165643}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &8305264350296358656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,6 +3759,7 @@ GameObject:
   - component: {fileID: 6424594193860049629}
   - component: {fileID: 8279363790568633083}
   - component: {fileID: 8279363790568633080}
+  - component: {fileID: 1510688556}
   m_Layer: 0
   m_Name: Hip
   m_TagString: Untagged
@@ -3390,6 +3812,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.23130229, y: 0.2122115, z: 0.22800052}
   m_Center: {x: -0.006482465, y: -0.008200415, z: -0.0028339021}
+--- !u!114 &1510688556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018191291756546772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790568633083}
+  joint: {fileID: 0}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &9036723387298945295
 GameObject:
   m_ObjectHideFlags: 0
@@ -3434,6 +3876,7 @@ GameObject:
   - component: {fileID: 8279363790929984290}
   - component: {fileID: 8279363790929984291}
   - component: {fileID: 8279363790929983709}
+  - component: {fileID: 1510688542}
   m_Layer: 0
   m_Name: Right_Forearm_Joint_01
   m_TagString: Untagged
@@ -3497,7 +3940,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.24062023, y: 0.0051436126, z: -0.012117977}
+  m_ConnectedAnchor: {x: 0.24062023, y: 0.0051436387, z: -0.0121179465}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3557,13 +4000,13 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
+    positionSpring: 200
+    positionDamper: 15
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
     serializedVersion: 3
@@ -3581,6 +4024,26 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1510688542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045539997709111515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831e85536d534d498b99d5e61a4e67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8279363790929984290}
+  joint: {fileID: 8279363790929983709}
+  animatedPeer: {fileID: 0}
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
+  initialAngularXDriveSpring: 0
+  initialAngularYZDriveSpring: 0
+  touchingGround: 0
 --- !u!1 &9138034944938218137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3729,6 +4192,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+--- !u!4 &6231616616592195579 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1389706179863368070, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+  m_PrefabInstance: {fileID: 4237293360595997057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1242242338797852641 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+  m_PrefabInstance: {fileID: 4237293360595997057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9202920102652787355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}

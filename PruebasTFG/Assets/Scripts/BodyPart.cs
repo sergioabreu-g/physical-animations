@@ -42,7 +42,7 @@ public class BodyPart : MonoBehaviour
 
         if (joint != null) {
             joint.targetRotation = Quaternion.identity;
-            SetJointRelativeStrength(0);
+            SetJointRelativeStrength(1);
         }
     }
 
@@ -56,6 +56,7 @@ public class BodyPart : MonoBehaviour
         joint.angularYZDrive = temp;
     }
 
+    /*
     public void SetTargetRotation(float x, float y, float z) {
         x = (x + 1f) * 0.5f;
         y = (y + 1f) * 0.5f;
@@ -65,8 +66,9 @@ public class BodyPart : MonoBehaviour
         var yRot = Mathf.Lerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, y);
         var zRot = Mathf.Lerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, z);
 
-        joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
-    }
+        var targetRot = Quaternion.Euler(xRot, yRot, zRot);
+        joint.targetRotation = targetRot;
+    }*/
 
     void OnCollisionEnter(Collision collision) {
         if (!collision.transform.TryGetComponent<BodyPart>(out BodyPart bodypart)) {

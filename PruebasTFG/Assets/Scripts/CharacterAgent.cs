@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
-using UnityEngine.XR.WSA.Input;
 using Unity.MLAgents.Policies;
+using System;
 
 public class CharacterAgent : Agent {
     [Header("--- GENERAL ---")]
     [SerializeField] private int _solverIterations = 13;
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
+    [SerializeField] private float _maxInclination = 50;
     [SerializeField] private bool _feedWorldRotations = false;
 
     private BehaviorParameters _behaviorParameters;
@@ -28,6 +29,17 @@ public class CharacterAgent : Agent {
     [Header("--- ANIMATORS ---")]
     [SerializeField] private Animator _animatedAnimator;
     [SerializeField] private Animator _physicalAnimator;
+
+    [Header("--- POSITION TARGETS ---")]
+    [SerializeField] private TargetPair[] _targets;
+
+    [Serializable]
+    public struct TargetPair {
+        public Transform bodyPart;
+        public Transform target;
+        public float maxDistance;
+    }
+
 
     private void OnValidate() {
         // Automatically retrieve the necessary references
@@ -76,11 +88,24 @@ public class CharacterAgent : Agent {
     private void FixedUpdate() {
         CalculateBalance();
         SyncAnimatedBody();
+        CalculateReward();
 
-        AddReward((40 - _balanceAngle) / 40);
 
         // TEMPORARILY DISABLED
         // UpdateJointTargets();
+    }
+
+    private void CalculateReward() {
+        float inclinationReward = 1 - (Mathf.Log(_balanceAngle + 1) / Mathf.Log(_maxInclination));
+
+        float heightReward = 0;
+        foreach (TargetPair targetPair in _targets) {
+            float dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
+            heightReward += Mathf.Clamp(1 - (dist / targetPair.maxDistance), 0, 1);
+        }
+        heightReward = (float) Math.Pow(heightReward / _targets.Length, 2);
+
+        AddReward(inclinationReward * heightReward);
     }
 
     private void CalculateBalance() {
@@ -100,9 +125,11 @@ public class CharacterAgent : Agent {
         foreach (BodyPart bodypart in _bodyParts) {
             if (!bodypart.touchingGround)
                 continue;
+
             SupportBasis.Add(bodypart);
             _CoS += bodypart.rb.position;
         }
+
         if (SupportBasis.Count != 0) {
             _CoS /= SupportBasis.Count;
 
@@ -113,7 +140,7 @@ public class CharacterAgent : Agent {
             _balanceAngle = Vector3.Angle(_balanceVector, -Physics.gravity.normalized);
         }
         else {
-            _balanceAngle = Vector3.Angle(_bodyParts[0].transform.right, -Physics.gravity.normalized);
+            _balanceAngle = _maxInclination;
         }
     }
 
@@ -130,6 +157,7 @@ public class CharacterAgent : Agent {
         foreach (BodyPart bodypart in _bodyParts)
             bodypart.Reset();
     }
+
     void DefineObservationActionSpaces() {
         // Observation Space
         int physicalBoneRotations = _bodyParts.Length * 4;
@@ -138,15 +166,16 @@ public class CharacterAgent : Agent {
         int vels = _bodyParts.Length * 3;
         int touchingGrounds = _bodyParts.Length;
         int relativeStrengths = (_bodyParts.Length - 1);
+        int targetRelPositions = _targets.Length * 3;
 
         int balanceVector = 3;
         int uprightVector = 3; // upright vector normalized (-gravity, generally Vector.up)
 
         _behaviorParameters.BrainParameters.VectorObservationSize =
-            physicalBoneRotations + relativeBonePos + balanceVector + angularVels + vels + relativeStrengths + uprightVector + touchingGrounds;
+            physicalBoneRotations + relativeBonePos + balanceVector + angularVels + vels + relativeStrengths + uprightVector + touchingGrounds + targetRelPositions;
 
         // Action Space
-        int targetRotations = (_bodyParts.Length - 1) * 3;
+        int targetRotations = (_bodyParts.Length - 1) * 4;
         _behaviorParameters.BrainParameters.VectorActionSize[0] = targetRotations + relativeStrengths;
     }
 
@@ -163,23 +192,26 @@ public class CharacterAgent : Agent {
                 sensor.AddObservation(bodypart.RelativeStrength);
         }
 
-        sensor.AddObservation(_balanceVector);
-        sensor.AddObservation(-Physics.gravity);
+        foreach (TargetPair targetPair in _targets)
+            sensor.AddObservation(targetPair.target.position - targetPair.bodyPart.position);
+
+        sensor.AddObservation(_balanceVector.normalized);
+        sensor.AddObservation(-Physics.gravity.normalized);
     }
 
     //Ejecuta las acciones y determina las recompensas. Recibe un vector con la información necesaria para llevar a cabo las acciones
     public override void OnActionReceived(float[] vectorAction) {
         int v = 0;
-
         foreach (BodyPart bodypart in _bodyParts) {
             if (bodypart.joint == null) continue;
 
-            bodypart.SetTargetRotation(vectorAction[v++], vectorAction[v++], vectorAction[v++]);
+            Quaternion q = new Quaternion(vectorAction[v++], vectorAction[v++], vectorAction[v++], vectorAction[v++]);
+            //ConfigurableJointExtensions.SetTargetRotationLocal(bodypart.joint, q, bodypart.initialRotation);
+            bodypart.joint.targetRotation = q;
             bodypart.RelativeStrength = (vectorAction[v++] + 1) / 2;
         }
 
-        if (_balanceAngle > 35) {
-            AddReward(-10.0f);
+        if (_balanceAngle > _maxInclination) {
             EndEpisode();
         }
     }
