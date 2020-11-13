@@ -54,13 +54,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984914123}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.70441604, y: 0.70441604, z: 0.06162851, w: 0.06162851}
   m_LocalPosition: {x: 0.028992068, y: -0.0025938721, z: 1.22991095e-17}
   m_LocalScale: {x: 30.1, y: 40, z: 28.4}
   m_Children: []
   m_Father: {fileID: 831273525}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 170, z: 90}
 --- !u!1 &128309253950693553
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   _solverIterations: 13
   _velSolverIterations: 13
   _maxAngularVelocity: 50
-  _maxInclination: 50
+  _maxInclination: 33
   _feedWorldRotations: 0
   _physicalRoot: {fileID: 2184509804712236994}
   _animatedRoot: {fileID: 6231616616592195579}
@@ -154,7 +154,8 @@ MonoBehaviour:
   _targets:
   - bodyPart: {fileID: 6424594193860049629}
     target: {fileID: 984914124}
-    maxDistance: 1
+    maxDistance: 0.6
+    maxAngle: 40
 --- !u!114 &1510688557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,12 +169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 230
+    VectorObservationSize: 233
     NumStackedVectorObservations: 1
     VectorActionSize: 46000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 923af229ee2b9d14c9adc33b343538ad, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: StandingRagdoll
@@ -401,6 +402,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790412607180}
   joint: {fileID: 8279363790412607183}
   animatedPeer: {fileID: 0}
+  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -581,6 +583,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790144816147}
   joint: {fileID: 8279363790144816146}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -759,6 +762,7 @@ MonoBehaviour:
   rb: {fileID: 8279363789918670666}
   joint: {fileID: 8279363789918670661}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -966,7 +970,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411885633816801870}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1082,6 +1086,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790462226307}
   joint: {fileID: 8279363790462226304}
   animatedPeer: {fileID: 0}
+  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1467,6 +1472,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790759603858}
   joint: {fileID: 8279363790759603859}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1709,6 +1715,7 @@ MonoBehaviour:
   rb: {fileID: 8279363788881526650}
   joint: {fileID: 8279363788881526651}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1783,7 +1790,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3276425260088280021}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2153,6 +2160,7 @@ MonoBehaviour:
   rb: {fileID: 8279363789994134072}
   joint: {fileID: 8279363789994134073}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2394,6 +2402,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790606704151}
   joint: {fileID: 8279363790606704148}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2652,6 +2661,7 @@ MonoBehaviour:
   rb: {fileID: 8279363789936133433}
   joint: {fileID: 8279363789936133439}
   animatedPeer: {fileID: 0}
+  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2862,6 +2872,7 @@ MonoBehaviour:
   rb: {fileID: 8279363789898027931}
   joint: {fileID: 8279363789898027929}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2985,7 +2996,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7136738460567253769}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3101,6 +3112,7 @@ MonoBehaviour:
   rb: {fileID: 8279363788864906655}
   joint: {fileID: 8279363788864906652}
   animatedPeer: {fileID: 0}
+  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3281,6 +3293,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790955449454}
   joint: {fileID: 8279363790955449455}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3538,6 +3551,7 @@ MonoBehaviour:
   rb: {fileID: 8279363788984165640}
   joint: {fileID: 8279363788984165643}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3581,7 +3595,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8305264350296358656}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3827,6 +3841,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790568633083}
   joint: {fileID: 0}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -4039,6 +4054,7 @@ MonoBehaviour:
   rb: {fileID: 8279363790929984290}
   joint: {fileID: 8279363790929983709}
   animatedPeer: {fileID: 0}
+  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0

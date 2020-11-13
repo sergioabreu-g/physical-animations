@@ -38,6 +38,7 @@ public class CharacterAgent : Agent {
         public Transform bodyPart;
         public Transform target;
         public float maxDistance;
+        public float maxAngle;
     }
 
 
@@ -98,14 +99,31 @@ public class CharacterAgent : Agent {
     private void CalculateReward() {
         float inclinationReward = 1 - (Mathf.Log(_balanceAngle + 1) / Mathf.Log(_maxInclination));
 
-        float heightReward = 0;
+        float targetReward = 0;
         foreach (TargetPair targetPair in _targets) {
             float dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
-            heightReward += Mathf.Clamp(1 - (dist / targetPair.maxDistance), 0, 1);
-        }
-        heightReward = (float) Math.Pow(heightReward / _targets.Length, 2);
+            float angle = Quaternion.Angle(targetPair.bodyPart.rotation, targetPair.target.rotation);
 
-        AddReward(inclinationReward * heightReward);
+            if (dist > targetPair.maxDistance || angle > targetPair.maxAngle)
+                EndEpisode();
+
+            float distReward = Mathf.Clamp(1 - (dist / targetPair.maxDistance), 0, 1);
+            float angleReward = Mathf.Clamp(1 - (angle / targetPair.maxAngle), 0, 1);
+
+            targetReward += distReward * angleReward;
+        }
+        targetReward = targetReward / _targets.Length;
+
+        float totalReward = inclinationReward * targetReward;
+        AddReward(totalReward);
+        //Debug.Log(totalReward);
+
+        // If some body part is in contact with the floor but it shouldn't be, give no reward in this step
+        foreach (BodyPart bodyPart in _bodyParts)
+            if (bodyPart.touchingGround && !bodyPart.canTouchGround) {
+                SetReward(0);
+                break;
+            }
     }
 
     private void CalculateBalance() {
@@ -211,8 +229,7 @@ public class CharacterAgent : Agent {
             bodypart.RelativeStrength = (vectorAction[v++] + 1) / 2;
         }
 
-        if (_balanceAngle > _maxInclination) {
+        if (_balanceAngle > _maxInclination)
             EndEpisode();
-        }
     }
 }

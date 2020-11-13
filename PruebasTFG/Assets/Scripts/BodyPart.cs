@@ -7,10 +7,15 @@ public class BodyPart : MonoBehaviour
     public Rigidbody rb;
     public ConfigurableJoint joint;
     public Transform animatedPeer;
+    public bool canTouchGround = false;
 
+    [HideInInspector]
     public Quaternion initialRotation;
+    [HideInInspector]
     public Vector3 initialPosition;
+    [HideInInspector]
     public float initialAngularXDriveSpring;
+    [HideInInspector]
     public float initialAngularYZDriveSpring;
 
     public bool touchingGround = false;
@@ -33,7 +38,7 @@ public class BodyPart : MonoBehaviour
             initialAngularYZDriveSpring = joint.angularYZDrive.positionSpring;
         }
     }
-    
+
     public void Reset() {
         rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
@@ -44,6 +49,9 @@ public class BodyPart : MonoBehaviour
             joint.targetRotation = Quaternion.identity;
             SetJointRelativeStrength(1);
         }
+
+        touchCount = 0;
+        touchingGround = false;
     }
 
     private void SetJointRelativeStrength(float strength) {
@@ -80,7 +88,7 @@ public class BodyPart : MonoBehaviour
     void OnCollisionExit(Collision collision) {
         if (!collision.transform.TryGetComponent<BodyPart>(out BodyPart bodypart)) {
             touchCount--;
-            touchingGround = touchCount == 0;
+            touchingGround = touchCount > 0;
         }
     }
 }
