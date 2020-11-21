@@ -243,7 +243,7 @@ public class CharacterAgent : Agent {
             bodypart.SetJointTargetRotation(rotX, rotY, rotZ);
             bodypart.RelativeStrength = (vectorAction[v++] + 1) / 2;
         }
-
+        
         if (_balanceAngle > _maxInclination)
             EndEpisode();
     }
