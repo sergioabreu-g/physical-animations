@@ -84,7 +84,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29478550325821641}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2290,7 +2290,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6822768437904061778}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2488,7 +2488,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 1
   m_BehaviorType: 0
-  m_BehaviorName: My Behavior
+  m_BehaviorName: StandingRagdoll
   TeamId: 0
   m_UseChildSensors: 1
 --- !u!114 &7740724944325388104
@@ -2593,7 +2593,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7740724945125702463}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2637,7 +2637,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7740724945523430034}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18b11605f5f314b4ca102cc232a2e146, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
