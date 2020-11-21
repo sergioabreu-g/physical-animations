@@ -184,16 +184,27 @@ public class CharacterAgent : Agent {
         int vels = _bodyParts.Length * 3;
         int touchingGrounds = _bodyParts.Length;
         int relativeStrengths = (_bodyParts.Length - 1);
+
         int targetRelPositions = _targets.Length * 3;
+        int targetRelRotations = _targets.Length * 4;
 
         int balanceVector = 3;
         int uprightVector = 3; // upright vector normalized (-gravity, generally Vector.up)
 
         _behaviorParameters.BrainParameters.VectorObservationSize =
-            physicalBoneRotations + relativeBonePos + balanceVector + angularVels + vels + relativeStrengths + uprightVector + touchingGrounds + targetRelPositions;
+            physicalBoneRotations + relativeBonePos + balanceVector + angularVels + vels
+            + relativeStrengths + uprightVector + touchingGrounds + targetRelPositions
+            + targetRelRotations;
 
         // Action Space
-        int targetRotations = (_bodyParts.Length - 1) * 4;
+        int targetRotations = 0;
+        foreach (BodyPart bodypart in _bodyParts) {
+            if (bodypart.joint != null) {
+                if (bodypart.joint.angularXMotion != ConfigurableJointMotion.Locked) targetRotations++;
+                if (bodypart.joint.angularYMotion != ConfigurableJointMotion.Locked) targetRotations++;
+                if (bodypart.joint.angularZMotion != ConfigurableJointMotion.Locked) targetRotations++;
+            }
+        }
         _behaviorParameters.BrainParameters.VectorActionSize[0] = targetRotations + relativeStrengths;
     }
 
@@ -210,8 +221,10 @@ public class CharacterAgent : Agent {
                 sensor.AddObservation(bodypart.RelativeStrength);
         }
 
-        foreach (TargetPair targetPair in _targets)
+        foreach (TargetPair targetPair in _targets) {
             sensor.AddObservation(targetPair.target.position - targetPair.bodyPart.position);
+            sensor.AddObservation(Quaternion.FromToRotation(targetPair.bodyPart.forward, targetPair.target.forward));
+        }
 
         sensor.AddObservation(_balanceVector.normalized);
         sensor.AddObservation(-Physics.gravity.normalized);
@@ -223,9 +236,11 @@ public class CharacterAgent : Agent {
         foreach (BodyPart bodypart in _bodyParts) {
             if (bodypart.joint == null) continue;
 
-            Quaternion q = new Quaternion(vectorAction[v++], vectorAction[v++], vectorAction[v++], vectorAction[v++]);
-            //ConfigurableJointExtensions.SetTargetRotationLocal(bodypart.joint, q, bodypart.initialRotation);
-            bodypart.joint.targetRotation = q;
+            var rotX = bodypart.joint.angularXMotion == ConfigurableJointMotion.Locked? 0 : vectorAction[v++];
+            var rotY = bodypart.joint.angularYMotion == ConfigurableJointMotion.Locked? 0 : vectorAction[v++];
+            var rotZ = bodypart.joint.angularZMotion == ConfigurableJointMotion.Locked? 0 : vectorAction[v++];
+
+            bodypart.SetJointTargetRotation(rotX, rotY, rotZ);
             bodypart.RelativeStrength = (vectorAction[v++] + 1) / 2;
         }
 
