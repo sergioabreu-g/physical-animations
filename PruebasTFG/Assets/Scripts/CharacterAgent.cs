@@ -20,6 +20,7 @@ public class CharacterAgent : Agent {
     [Header("--- BODY ---")]
     [SerializeField] private Transform _physicalRoot;
     [SerializeField] private Transform _animatedRoot;
+
     private Vector3 _CoM, _CoS;  // Center of Mass & Center of Support
     private Vector3 _balanceVector;
     float _balanceAngle;
@@ -121,8 +122,24 @@ public class CharacterAgent : Agent {
     }
 
     private void CalculateReward() {
-        float inclinationReward = 1 - (Mathf.Log(_balanceAngle + 1) / Mathf.Log(_maxInclination));
+        //float inclinationReward = 1 - (Mathf.Log(_balanceAngle) / Mathf.Log(_maxInclination));+
+        //float inclinationReward = Mathf.Pow(1 - (_balanceAngle / _maxInclination), 2);
+        float targetReward = TargetsReward();
 
+        float totalReward = targetReward;
+        totalReward = (totalReward * (1 + _negativePercentage)) - _negativePercentage;
+
+        AddReward(totalReward);
+
+        // If some body part is in contact with the floor but it shouldn't be, give no reward in this step
+        foreach (BodyPart bodyPart in _bodyParts)
+            if (bodyPart.touchingGround && !bodyPart.canTouchGround) {
+                SetReward(0);
+                break;
+            }
+    }
+
+    private float TargetsReward() {
         float targetReward = 0;
         foreach (TargetPair targetPair in _targets) {
             float dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
@@ -131,24 +148,14 @@ public class CharacterAgent : Agent {
             if (dist > targetPair.maxDistance || angle > targetPair.maxAngle)
                 EndEpisode();
 
-            float distReward = Mathf.Clamp(1 - (dist / targetPair.maxDistance), 0, 1);
-            float angleReward = Mathf.Clamp(1 - (angle / targetPair.maxAngle), 0, 1);
+            float distReward = Mathf.Pow(1 - (dist / targetPair.maxDistance), 2);
+            float angleReward = Mathf.Pow(1 - (angle / targetPair.maxAngle), 2);
 
             targetReward += distReward * angleReward;
         }
         targetReward = targetReward / _targets.Length;
 
-        float totalReward = inclinationReward * targetReward;
-        totalReward = (totalReward * (1 + _negativePercentage)) - _negativePercentage;
-        AddReward(totalReward);
-        //Debug.Log(totalReward);
-
-        // If some body part is in contact with the floor but it shouldn't be, give no reward in this step
-        foreach (BodyPart bodyPart in _bodyParts)
-            if (bodyPart.touchingGround && !bodyPart.canTouchGround) {
-                SetReward(0);
-                break;
-            }
+        return targetReward;
     }
 
     private void CalculateBalance() {
