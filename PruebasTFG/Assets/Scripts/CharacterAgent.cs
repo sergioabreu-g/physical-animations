@@ -13,6 +13,7 @@ public class CharacterAgent : Agent {
     [SerializeField] private float _maxAngularVelocity = 50;
     [SerializeField] private float _maxInclination = 50;
     [SerializeField] private bool _feedWorldRotations = false;
+    [SerializeField] private float _negativePercentage = 0.25f;
 
     private BehaviorParameters _behaviorParameters;
 
@@ -39,6 +40,26 @@ public class CharacterAgent : Agent {
         public Transform target;
         public float maxDistance;
         public float maxAngle;
+        public float positionRandomRange;
+        public float rotationRandomRange;
+
+        private Vector3 _initialPos;
+        private Quaternion _initialRot;
+
+        public void Init() {
+            _initialPos = target.position;
+            _initialRot = target.rotation;
+        }
+
+        public void Randomize() {
+            target.position = _initialPos + new Vector3(UnityEngine.Random.Range(-positionRandomRange, positionRandomRange),
+                                                        UnityEngine.Random.Range(-positionRandomRange, positionRandomRange),
+                                                        UnityEngine.Random.Range(-positionRandomRange, positionRandomRange));
+
+            target.rotation = _initialRot * Quaternion.Euler(new Vector3(UnityEngine.Random.Range(-rotationRandomRange, rotationRandomRange),
+                                                        UnityEngine.Random.Range(-rotationRandomRange, rotationRandomRange),
+                                                        UnityEngine.Random.Range(-rotationRandomRange, rotationRandomRange)));
+        }
     }
 
 
@@ -83,6 +104,9 @@ public class CharacterAgent : Agent {
             bodyPart.rb.maxAngularVelocity = _maxAngularVelocity;
         }
 
+        for (int i = 0; i < _targets.Length; i++)
+            _targets[i].Init();
+
         SupportBasis = new List<BodyPart>();
     }
 
@@ -115,6 +139,7 @@ public class CharacterAgent : Agent {
         targetReward = targetReward / _targets.Length;
 
         float totalReward = inclinationReward * targetReward;
+        totalReward = (totalReward * (1 + _negativePercentage)) - _negativePercentage;
         AddReward(totalReward);
         //Debug.Log(totalReward);
 
@@ -174,6 +199,9 @@ public class CharacterAgent : Agent {
     public override void OnEpisodeBegin() {
         foreach (BodyPart bodypart in _bodyParts)
             bodypart.Reset();
+
+        foreach (TargetPair targetPair in _targets)
+            targetPair.Randomize();
     }
 
     void DefineObservationActionSpaces() {

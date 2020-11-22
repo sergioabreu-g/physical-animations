@@ -42,11 +42,12 @@ public class BodyPart : MonoBehaviour
     public void Reset() {
         rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
+
         rb.transform.localRotation = initialRotation;
         rb.transform.position = initialPosition;
 
         if (joint != null) {
-            joint.targetRotation = Quaternion.identity;
+            SetJointTargetRotation(0, 0, 0);
             SetJointRelativeStrength(1);
         }
 
