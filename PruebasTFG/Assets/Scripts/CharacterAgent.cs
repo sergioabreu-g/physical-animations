@@ -24,7 +24,8 @@ public class CharacterAgent : Agent {
     private Vector3 _CoM, _CoS;  // Center of Mass & Center of Support
     private Vector3 _balanceVector;
     float _balanceAngle;
-
+    
+    [Tooltip("IMPORTANT: The first BodyPart must be the root of the body.")]
     [SerializeField] private BodyPart[] _bodyParts;
     public List<BodyPart> SupportBasis { get; private set; }
 
@@ -42,14 +43,6 @@ public class CharacterAgent : Agent {
         public float maxDistance;
         public float maxAngle;
         public bool endEpisode;
-
-        private Vector3 _initialPos;
-        private Quaternion _initialRot;
-
-        public void Init() {
-            _initialPos = target.position;
-            _initialRot = target.rotation;
-        }
     }
 
 
@@ -74,7 +67,7 @@ public class CharacterAgent : Agent {
 
     void SetupBodyParts() {
         Rigidbody[] rigidbodies = _physicalAnimator.GetComponentsInChildren<Rigidbody>();
-        _bodyParts = new BodyPart[rigidbodies.Length];
+        _bodyParts = new BodyPart[rigidbodies.Length - 1];
 
         for (int i = 0; i < rigidbodies.Length; i++) {
             if (!rigidbodies[i].TryGetComponent(out _bodyParts[i]))
@@ -94,23 +87,15 @@ public class CharacterAgent : Agent {
             bodyPart.rb.maxAngularVelocity = _maxAngularVelocity;
         }
 
-        for (int i = 0; i < _targets.Length; i++)
-            _targets[i].Init();
-
         SupportBasis = new List<BodyPart>();
     }
 
     private void FixedUpdate() {
         CalculateBalance();
         CalculateReward();
-
-        // TEMPORARILY DISABLED
-        // UpdateJointTargets();
     }
 
     private void CalculateReward() {
-        //float inclinationReward = 1 - (Mathf.Log(_balanceAngle) / Mathf.Log(_maxInclination));+
-        //float inclinationReward = Mathf.Pow(1 - (_balanceAngle / _maxInclination), 2);
         float targetReward = TargetsReward();
 
         float totalReward = targetReward;
@@ -217,25 +202,23 @@ public class CharacterAgent : Agent {
 
     //Recoleccion de informacion necesaria para tomar decisiones
     public override void CollectObservations(VectorSensor sensor) {
-        foreach (BodyPart bodypart in _bodyParts) {
-            if (bodypart.transform == _physicalRoot) {
-                sensor.AddObservation(bodypart.rb.angularVelocity);
-                sensor.AddObservation(bodypart.rb.velocity);
-                sensor.AddObservation(bodypart.touchingGround);
+        // ROOT observations are different from the rest of the BodyParts
+        sensor.AddObservation(_bodyParts[0].rb.angularVelocity);
+        sensor.AddObservation(_bodyParts[0].rb.velocity);
+        sensor.AddObservation(_bodyParts[0].touchingGround);
 
-                continue;
-            }
+        // BODY PARTS
+        for (int i = 1; i < _bodyParts.Length; i++) {
+            sensor.AddObservation(_physicalRoot.InverseTransformPoint(_bodyParts[i].rb.position));
+            sensor.AddObservation(_bodyParts[i].GetJointNormalizedRotation());
+            sensor.AddObservation(_physicalRoot.InverseTransformDirection(_bodyParts[i].rb.velocity));
+            sensor.AddObservation(_physicalRoot.InverseTransformDirection(_bodyParts[i].rb.angularVelocity));
 
-            sensor.AddObservation(bodypart.GetJointNormalizedRotation());
-            sensor.AddObservation(_physicalRoot.InverseTransformPoint(bodypart.rb.position));
-            sensor.AddObservation(_physicalRoot.InverseTransformDirection(bodypart.rb.angularVelocity));
-            sensor.AddObservation(_physicalRoot.InverseTransformDirection(bodypart.rb.velocity));
-            sensor.AddObservation(bodypart.touchingGround);
-
-            if (bodypart.joint != null)
-                sensor.AddObservation(bodypart.RelativeStrength);
+            sensor.AddObservation(_bodyParts[i].touchingGround);
+            sensor.AddObservation(_bodyParts[i].RelativeStrength);
         }
 
+        // TARGETS
         foreach (TargetPair targetPair in _targets) {
             if (targetPair.bodyPart == _physicalRoot) {
                 sensor.AddObservation(targetPair.target.position - targetPair.bodyPart.position);
@@ -251,13 +234,11 @@ public class CharacterAgent : Agent {
             sensor.AddObservation(Quaternion.FromToRotation(bodyForward, targetForward).eulerAngles / 360);
         }
 
+        // BALANCE
         Vector3 _localBalanceVec = _physicalRoot.InverseTransformDirection(_balanceVector.normalized);
         Vector3 _localGravity = _physicalRoot.InverseTransformDirection(-Physics.gravity.normalized);
         Vector3 _balanceRot = Quaternion.FromToRotation(_localBalanceVec, _localGravity).eulerAngles / 360;
         sensor.AddObservation(_balanceRot);
-        
-        //sensor.AddObservation(_physicalRoot.InverseTransformDirection(_balanceVector.normalized));
-        //sensor.AddObservation(_physicalRoot.InverseTransformDirection(-Physics.gravity.normalized));
     }
 
     //Ejecuta las acciones y determina las recompensas. Recibe un vector con la información necesaria para llevar a cabo las acciones
