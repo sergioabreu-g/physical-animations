@@ -247,9 +247,9 @@ public class CharacterAgent : Agent {
     public override void CollectObservations(VectorSensor sensor) {
         foreach (BodyPart bodypart in _bodyParts) {
             sensor.AddObservation(_feedWorldRotations ? bodypart.rb.rotation : bodypart.rb.transform.localRotation);
-            sensor.AddObservation(bodypart.rb.position - _CoM);
-            sensor.AddObservation(bodypart.rb.angularVelocity);
-            sensor.AddObservation(bodypart.rb.velocity);
+            sensor.AddObservation(_physicalRoot.InverseTransformPoint(bodypart.rb.position));
+            sensor.AddObservation(_physicalRoot.InverseTransformDirection(bodypart.rb.angularVelocity));
+            sensor.AddObservation(_physicalRoot.InverseTransformDirection(bodypart.rb.velocity));
             sensor.AddObservation(bodypart.touchingGround);
 
             if (bodypart.joint != null)
@@ -257,12 +257,12 @@ public class CharacterAgent : Agent {
         }
 
         foreach (TargetPair targetPair in _targets) {
-            sensor.AddObservation(targetPair.target.position - targetPair.bodyPart.position);
+            sensor.AddObservation(_physicalRoot.InverseTransformDirection(targetPair.target.position - targetPair.bodyPart.position));
             sensor.AddObservation(Quaternion.FromToRotation(targetPair.bodyPart.forward, targetPair.target.forward));
         }
 
-        sensor.AddObservation(_balanceVector.normalized);
-        sensor.AddObservation(-Physics.gravity.normalized);
+        sensor.AddObservation(_physicalRoot.InverseTransformDirection(_balanceVector.normalized));
+        sensor.AddObservation(_physicalRoot.InverseTransformDirection(-Physics.gravity.normalized));
     }
 
     //Ejecuta las acciones y determina las recompensas. Recibe un vector con la información necesaria para llevar a cabo las acciones
