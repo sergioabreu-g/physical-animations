@@ -77,6 +77,19 @@ public class BodyPart : MonoBehaviour
         joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
     }
 
+    public Vector3 GetJointNormalizedRotation() {
+        Vector3 jointRot = transform.localRotation.eulerAngles;
+
+        if (joint == null)
+            return jointRot;
+
+        jointRot.x = Mathf.InverseLerp(joint.lowAngularXLimit.limit, joint.highAngularXLimit.limit, jointRot.x);
+        jointRot.y = Mathf.InverseLerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, jointRot.y);
+        jointRot.z = Mathf.InverseLerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, jointRot.z);
+
+        return jointRot;
+    }
+
     void OnCollisionEnter(Collision collision) {
         if (!collision.transform.TryGetComponent<BodyPart>(out BodyPart bodypart)) {
             touchCount++;
