@@ -12,8 +12,8 @@ public class CharacterAgent : Agent {
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
 
-    [SerializeField] private float _negativePercentage = 0.25f;
-    [SerializeField] private float _touchPenalty = 0.2f;
+    [SerializeField] private float _strengthRewardMultiplier = 2f;
+    [SerializeField] private float _touchRewardMultiplier = 0.7f;
 
     private BehaviorParameters _behaviorParameters;
 
@@ -96,38 +96,62 @@ public class CharacterAgent : Agent {
     }
 
     private void CalculateReward() {
-        float targetReward = TargetsReward();
+        float totalReward = TargetsReward();
+        totalReward *= StrengthRewardMultiplier();
+        totalReward *= TouchingGroundRewardMultiplier();
 
-        float totalReward = targetReward;
-        totalReward = (totalReward * (1 + _negativePercentage)) - _negativePercentage;
-
+        //Debug.Log("Total reward: " + totalReward);
+         
         AddReward(totalReward);
-
-        // If some body part is in contact with the floor but it shouldn't be, give no reward in this step
-        foreach (BodyPart bodyPart in _bodyParts)
-            if (bodyPart.touchingGround && !bodyPart.canTouchGround) {
-                AddReward(-_touchPenalty);
-                break;
-            }
     }
 
     private float TargetsReward() {
         float targetReward = 0;
         foreach (TargetPair targetPair in _targets) {
-            float dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
-            float angle = Quaternion.Angle(targetPair.bodyPart.rotation, targetPair.target.rotation);
+            float distReward = 1;
+            float dist = 0;
+            if (targetPair.maxDistance != 0) {
+                dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
+                distReward = 1 - (dist / targetPair.maxDistance);
+            }
+
+            float angleReward = 1;
+            float angle = 0;
+            if (targetPair.maxAngle != 0) {
+                angle = Quaternion.Angle(targetPair.bodyPart.rotation, targetPair.target.rotation);
+                angleReward = 1 - (angle / targetPair.maxAngle);
+            }
 
             if (targetPair.endEpisode && (dist > targetPair.maxDistance || angle > targetPair.maxAngle))
                 EndEpisode();
-
-            float distReward = Mathf.Pow(1 - (dist / targetPair.maxDistance), 2);
-            float angleReward = Mathf.Pow(1 - (angle / targetPair.maxAngle), 2);
 
             targetReward += distReward * angleReward;
         }
         targetReward = targetReward / _targets.Length;
 
+        //Debug.Log("Targets reward: " + targetReward);
+
         return targetReward;
+    }
+
+    private float StrengthRewardMultiplier() {
+        float averageStrength = 0;
+        foreach (BodyPart bodyPart in _bodyParts)
+            averageStrength += bodyPart.RelativeStrength;
+        averageStrength /= _bodyParts.Length;
+        averageStrength = Mathf.Sqrt(averageStrength);
+
+        //Debug.Log("Strength reward multiplier: " + Mathf.Lerp(1, _strengthRewardMultiplier, 1 - averageStrength));
+
+        return Mathf.Lerp(1, _strengthRewardMultiplier, 1 - averageStrength);
+    }
+
+    private float TouchingGroundRewardMultiplier() {
+        foreach (BodyPart bodyPart in _bodyParts)
+            if (bodyPart.touchingGround && !bodyPart.canTouchGround)
+                return _touchRewardMultiplier;
+
+        return 1;
     }
 
     private void CalculateBalance() {
