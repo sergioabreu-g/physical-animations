@@ -2445,8 +2445,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  _solverIterations: 15
-  _velSolverIterations: 15
+  _solverIterations: 20
+  _velSolverIterations: 20
   _maxAngularVelocity: 50
   _strengthRewardMultiplier: 1.8
   _touchRewardMultiplier: 0.7
@@ -2497,7 +2497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 1
   TakeActionsBetweenDecisions: 0
 --- !u!1 &7740724945125702463
 GameObject:
