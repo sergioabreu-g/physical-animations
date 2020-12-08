@@ -6,7 +6,6 @@ public class BodyPart : MonoBehaviour
 {
     public Rigidbody rb;
     public ConfigurableJoint joint;
-    public Transform animatedPeer;
     public bool canTouchGround = false;
 
     [HideInInspector]

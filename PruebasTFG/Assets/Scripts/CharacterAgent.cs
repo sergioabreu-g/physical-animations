@@ -38,10 +38,12 @@ public class CharacterAgent : Agent {
 
     [Serializable]
     public struct TargetPair {
-        public Transform bodyPart;
-        public Transform target;
+        public Rigidbody bodyPart;
+        public Rigidbody target;
+        public float rewardWeight;
         public float maxDistance;
         public float maxAngle;
+        public float maxAngularVel;
         public bool endEpisode;
     }
 
@@ -106,28 +108,52 @@ public class CharacterAgent : Agent {
     }
 
     private float TargetsReward() {
+        float totalWeights = 0;
         float targetReward = 0;
         foreach (TargetPair targetPair in _targets) {
-            float distReward = 1;
+            bool doesSomething = false;
+
+            float positionReward = 1;
             float dist = 0;
             if (targetPair.maxDistance != 0) {
                 dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
-                distReward = 1 - (dist / targetPair.maxDistance);
+                positionReward = 1 - (dist / targetPair.maxDistance);
+                doesSomething = true;
             }
 
-            float angleReward = 1;
+            float rotationReward = 1;
             float angle = 0;
             if (targetPair.maxAngle != 0) {
                 angle = Quaternion.Angle(targetPair.bodyPart.rotation, targetPair.target.rotation);
-                angleReward = 1 - (angle / targetPair.maxAngle);
+                rotationReward = 1 - (angle / targetPair.maxAngle);
+                doesSomething = true;
             }
 
-            if (targetPair.endEpisode && (dist > targetPair.maxDistance || angle > targetPair.maxAngle))
-                EndEpisode();
+            float velocityReward = 1;
+            float velocityDifference = 0;
+            if (targetPair.maxDistance != 0) {
+                velocityDifference = Vector3.Distance(targetPair.bodyPart.angularVelocity, targetPair.target.angularVelocity);
+                velocityReward = 1 - (velocityDifference / targetPair.maxAngularVel);
+                doesSomething = true;
+            }
 
-            targetReward += distReward * angleReward;
+            if (!doesSomething || targetPair.rewardWeight == 0) {
+#if UNITY_EDITOR
+                Debug.LogWarning("Target Pair '" + targetPair.bodyPart.name + "' is having no effect on the reward, check your target configuration.");
+#endif
+                continue;
+            }
+
+            totalWeights += targetPair.rewardWeight;
+            targetReward += targetPair.rewardWeight * (positionReward * rotationReward * velocityReward);
+
+            if (targetPair.endEpisode &&
+                (dist > targetPair.maxDistance
+                || angle > targetPair.maxAngle
+                || velocityDifference > targetPair.maxAngularVel))
+                EndEpisode();
         }
-        targetReward = targetReward / _targets.Length;
+        targetReward = targetReward / totalWeights;
 
         //Debug.Log("Targets reward: " + targetReward);
 
@@ -246,14 +272,14 @@ public class CharacterAgent : Agent {
         foreach (TargetPair targetPair in _targets) {
             if (targetPair.bodyPart == _physicalRoot) {
                 sensor.AddObservation(targetPair.target.position - targetPair.bodyPart.position);
-                sensor.AddObservation(Quaternion.FromToRotation(targetPair.bodyPart.forward, targetPair.target.forward).eulerAngles / 360);
+                sensor.AddObservation(Quaternion.FromToRotation(targetPair.bodyPart.transform.forward, targetPair.target.transform.forward).eulerAngles / 360);
                 continue;
             }
 
             sensor.AddObservation(_physicalRoot.InverseTransformDirection(targetPair.target.position - targetPair.bodyPart.position));
 
-            Vector3 bodyForward = _physicalRoot.InverseTransformDirection(targetPair.bodyPart.forward);
-            Vector3 targetForward = _physicalRoot.InverseTransformDirection(targetPair.target.forward);
+            Vector3 bodyForward = _physicalRoot.InverseTransformDirection(targetPair.bodyPart.transform.forward);
+            Vector3 targetForward = _physicalRoot.InverseTransformDirection(targetPair.target.transform.forward);
 
             sensor.AddObservation(Quaternion.FromToRotation(bodyForward, targetForward).eulerAngles / 360);
         }
