@@ -99,7 +99,7 @@ public class CharacterAgent : Agent {
 
     private void CalculateReward() {
         float totalReward = TargetsReward();
-        totalReward *= StrengthRewardMultiplier();
+        //totalReward *= StrengthRewardMultiplier();
         totalReward *= TouchingGroundRewardMultiplier();
 
         //Debug.Log("Total reward: " + totalReward);
@@ -131,7 +131,7 @@ public class CharacterAgent : Agent {
 
             float velocityReward = 1;
             float velocityDifference = 0;
-            if (targetPair.maxDistance != 0) {
+            if (targetPair.maxAngularVel != 0) {
                 velocityDifference = Vector3.Distance(targetPair.bodyPart.angularVelocity, targetPair.target.angularVelocity);
                 velocityReward = 1 - (velocityDifference / targetPair.maxAngularVel);
                 doesSomething = true;
@@ -164,6 +164,7 @@ public class CharacterAgent : Agent {
         float averageStrength = 0;
         foreach (BodyPart bodyPart in _bodyParts)
             averageStrength += bodyPart.RelativeStrength;
+
         averageStrength /= _bodyParts.Length;
         averageStrength = Mathf.Sqrt(averageStrength);
 

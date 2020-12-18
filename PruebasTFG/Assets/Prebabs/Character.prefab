@@ -2735,7 +2735,7 @@ MonoBehaviour:
   _solverIterations: 20
   _velSolverIterations: 20
   _maxAngularVelocity: 50
-  _strengthRewardMultiplier: 1.8
+  _strengthRewardMultiplier: 1.5
   _touchRewardMultiplier: 0.7
   _physicalRoot: {fileID: 579685680736820152}
   _animatedRoot: {fileID: 579685681934066677}
