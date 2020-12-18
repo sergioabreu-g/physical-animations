@@ -11,8 +11,6 @@ public class CharacterAgent : Agent {
     [SerializeField] private int _solverIterations = 13;
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
-
-    [SerializeField] private float _strengthRewardMultiplier = 2f;
     [SerializeField] private float _touchRewardMultiplier = 0.7f;
 
     private BehaviorParameters _behaviorParameters;
@@ -160,19 +158,6 @@ public class CharacterAgent : Agent {
         return targetReward;
     }
 
-    private float StrengthRewardMultiplier() {
-        float averageStrength = 0;
-        foreach (BodyPart bodyPart in _bodyParts)
-            averageStrength += bodyPart.RelativeStrength;
-
-        averageStrength /= _bodyParts.Length;
-        averageStrength = Mathf.Sqrt(averageStrength);
-
-        //Debug.Log("Strength reward multiplier: " + Mathf.Lerp(1, _strengthRewardMultiplier, 1 - averageStrength));
-
-        return Mathf.Lerp(1, _strengthRewardMultiplier, 1 - averageStrength);
-    }
-
     private float TouchingGroundRewardMultiplier() {
         foreach (BodyPart bodyPart in _bodyParts)
             if (bodyPart.touchingGround && !bodyPart.canTouchGround)
@@ -227,7 +212,6 @@ public class CharacterAgent : Agent {
         int angularVels = _bodyParts.Length * 3;
         int vels = _bodyParts.Length * 3;
         int touchingGrounds = _bodyParts.Length;
-        int relativeStrengths = (_bodyParts.Length - 1);
 
         int targetRelPositions = _targets.Length * 3 - 3;
         int targetRelRotations = _targets.Length * 3 - 3;
@@ -236,8 +220,7 @@ public class CharacterAgent : Agent {
 
         _behaviorParameters.BrainParameters.VectorObservationSize =
             physicalBoneRotations + relativeBonePos + balanceRot + angularVels + vels
-            + relativeStrengths + touchingGrounds + targetRelPositions
-            + targetRelRotations;
+            + touchingGrounds + targetRelPositions + targetRelRotations;
 
         // Action Space
         int targetRotations = 0;
@@ -248,7 +231,7 @@ public class CharacterAgent : Agent {
                 if (bodypart.joint.angularZMotion != ConfigurableJointMotion.Locked) targetRotations++;
             }
         }
-        _behaviorParameters.BrainParameters.VectorActionSize[0] = targetRotations + relativeStrengths;
+        _behaviorParameters.BrainParameters.VectorActionSize[0] = targetRotations;
     }
 
     //Recoleccion de informacion necesaria para tomar decisiones
@@ -266,7 +249,6 @@ public class CharacterAgent : Agent {
             sensor.AddObservation(_physicalRoot.InverseTransformDirection(_bodyParts[i].rb.angularVelocity));
 
             sensor.AddObservation(_bodyParts[i].touchingGround);
-            sensor.AddObservation(_bodyParts[i].RelativeStrength);
         }
 
         // TARGETS
@@ -302,8 +284,7 @@ public class CharacterAgent : Agent {
             var rotY = bodypart.joint.angularYMotion == ConfigurableJointMotion.Locked? 0 : vectorAction[v++];
             var rotZ = bodypart.joint.angularZMotion == ConfigurableJointMotion.Locked? 0 : vectorAction[v++];
 
-            bodypart.SetJointTargetRotation(rotX, rotY, rotZ);
-            bodypart.RelativeStrength = (vectorAction[v++] + 1) / 2;
+            bodypart.SetTargetRotation(rotX, rotY, rotZ);
         }
     }
 }

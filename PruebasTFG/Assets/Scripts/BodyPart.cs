@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TorquePD))]
 public class BodyPart : MonoBehaviour
 {
     public Rigidbody rb;
@@ -21,14 +22,11 @@ public class BodyPart : MonoBehaviour
     private int touchCount = 0;
 
     private float _relativeStrength = 1;
-    public float RelativeStrength { get { return _relativeStrength; } 
-        set {
-            if (_relativeStrength == value) return;
-            _relativeStrength = value;
-            SetJointRelativeStrength(value);
-        } }
+    private TorquePD _torquePD;
 
     public void Start() {
+        _torquePD = GetComponent<TorquePD>();
+
         initialRotation = transform.localRotation;
         initialPosition = transform.position;
 
@@ -46,25 +44,14 @@ public class BodyPart : MonoBehaviour
         rb.transform.position = initialPosition;
 
         if (joint != null) {
-            SetJointTargetRotation(0, 0, 0);
-            SetJointRelativeStrength(1);
+            SetTargetRotation(0, 0, 0);
         }
 
         touchCount = 0;
         touchingGround = false;
     }
 
-    private void SetJointRelativeStrength(float strength) {
-        JointDrive temp = joint.angularXDrive;
-        temp.positionSpring = strength * initialAngularXDriveSpring;
-        joint.angularXDrive = temp;
-
-        temp = joint.angularYZDrive;
-        temp.positionSpring = strength * initialAngularYZDriveSpring;
-        joint.angularYZDrive = temp;
-    }
-
-    public void SetJointTargetRotation(float x, float y, float z) {
+    public void SetTargetRotation(float x, float y, float z) {
         x = (x + 1f) * 0.5f;
         y = (y + 1f) * 0.5f;
         z = (z + 1f) * 0.5f;
@@ -73,7 +60,7 @@ public class BodyPart : MonoBehaviour
         var yRot = Mathf.Lerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, y);
         var zRot = Mathf.Lerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, z);
 
-        joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
+        _torquePD.targetRot = Quaternion.Euler(xRot, yRot, zRot);
     }
 
     public Vector3 GetJointNormalizedRotation() {

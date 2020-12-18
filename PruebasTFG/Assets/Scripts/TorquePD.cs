@@ -4,31 +4,16 @@ using UnityEngine;
 
 public class TorquePD : MonoBehaviour
 {
-    public string name;
-    public float frequency, damping;
-    public Quaternion targetRot;
+    public float frequency = 6, damping = 1, maxTorque = 500;
     public bool localRotation = true;
+    public Quaternion targetRot;
 
     private Rigidbody _rb;
     private float _kp = 1.0f, _kd = 0.1f;
-    private Vector3 _P = Vector3.zero, _I = Vector3.zero, _D = Vector3.zero;
-    private Vector3 _previousError = Vector3.zero;
     private Quaternion _fixedTargetRot;
 
     private void Start() {
         _rb = GetComponent<Rigidbody>();
-    }
-
-    public Vector3 GetOutput(Vector3 current, Vector3 target, float deltaTime) {
-        _P = target - current;
-
-        _I += _P * deltaTime;
-
-        _D = (_P - _previousError) / deltaTime;
-
-        _previousError = _P;
-
-        return _P * _kp + _D * _kd;
     }
 
     public void FixedUpdate() {
@@ -43,7 +28,6 @@ public class TorquePD : MonoBehaviour
         Vector3 x;
         float xMag;
 
-        Quaternion rot = localRotation ? transform.localRotation : transform.rotation;
         Quaternion q = _fixedTargetRot * Quaternion.Inverse(transform.rotation);
         // Q can be the-long-rotation-around-the-sphere eg. 350 degrees
         // We want the equivalant short rotation eg. -10 degrees
@@ -59,10 +43,11 @@ public class TorquePD : MonoBehaviour
         x.Normalize();
         x *= Mathf.Deg2Rad;
         Vector3 pidv = _kp * x * xMag - _kd * _rb.angularVelocity;
-        Quaternion rotInertia2World = _rb.inertiaTensorRotation * rot;
+        Quaternion rotInertia2World = _rb.inertiaTensorRotation * transform.rotation;
         pidv = Quaternion.Inverse(rotInertia2World) * pidv;
         pidv.Scale(_rb.inertiaTensor);
         pidv = rotInertia2World * pidv;
-        _rb.AddTorque(pidv);
+
+        _rb.AddTorque(Vector3.ClampMagnitude(pidv, maxTorque));
     }
 }
