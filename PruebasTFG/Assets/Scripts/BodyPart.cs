@@ -60,7 +60,15 @@ public class BodyPart : MonoBehaviour
         var yRot = Mathf.Lerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, y);
         var zRot = Mathf.Lerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, z);
 
-        _torquePD.targetRot = Quaternion.Euler(xRot, yRot, zRot);
+        if (joint.secondaryAxis == Vector3.zero || joint.axis == Vector3.zero)
+            Debug.LogWarning("Joint axes cannot be zero.");
+
+        Vector3 thirdAxis = Vector3.Cross(joint.axis, joint.secondaryAxis).normalized;
+        Vector3 transformedRotation = joint.axis.normalized * xRot
+                                    + joint.secondaryAxis.normalized * yRot
+                                    + thirdAxis * zRot;
+
+        _torquePD.targetRot = Quaternion.Euler(transformedRotation);
     }
 
     public Vector3 GetJointNormalizedRotation() {

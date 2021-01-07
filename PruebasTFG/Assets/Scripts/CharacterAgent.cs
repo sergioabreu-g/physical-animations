@@ -12,6 +12,10 @@ public class CharacterAgent : Agent {
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
     [SerializeField] private float _touchRewardMultiplier = 0.7f;
+    [SerializeField] private float _matchRotationsWeight = 0.7f,
+                                    _matchPositionWeight = 0.15f, 
+                                    _matchVelocityWeight = 0.15f;
+
 
     private BehaviorParameters _behaviorParameters;
 
@@ -107,7 +111,7 @@ public class CharacterAgent : Agent {
 
     private float TargetsReward() {
         float totalWeights = 0;
-        float targetReward = 0;
+        float targetsReward = 0;
         foreach (TargetPair targetPair in _targets) {
             bool doesSomething = false;
 
@@ -116,6 +120,7 @@ public class CharacterAgent : Agent {
             if (targetPair.maxDistance != 0) {
                 dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
                 positionReward = 1 - (dist / targetPair.maxDistance);
+                positionReward *= _matchPositionWeight;
                 doesSomething = true;
             }
 
@@ -124,6 +129,7 @@ public class CharacterAgent : Agent {
             if (targetPair.maxAngle != 0) {
                 angle = Quaternion.Angle(targetPair.bodyPart.rotation, targetPair.target.rotation);
                 rotationReward = 1 - (angle / targetPair.maxAngle);
+                rotationReward *= _matchRotationsWeight;
                 doesSomething = true;
             }
 
@@ -132,6 +138,7 @@ public class CharacterAgent : Agent {
             if (targetPair.maxAngularVel != 0) {
                 velocityDifference = Vector3.Distance(targetPair.bodyPart.angularVelocity, targetPair.target.angularVelocity);
                 velocityReward = 1 - (velocityDifference / targetPair.maxAngularVel);
+                velocityReward *= _matchVelocityWeight;
                 doesSomething = true;
             }
 
@@ -143,7 +150,7 @@ public class CharacterAgent : Agent {
             }
 
             totalWeights += targetPair.rewardWeight;
-            targetReward += targetPair.rewardWeight * (positionReward * rotationReward * velocityReward);
+            targetsReward += targetPair.rewardWeight * (positionReward + rotationReward + velocityReward);
 
             if (targetPair.endEpisode &&
                 (dist > targetPair.maxDistance
@@ -151,11 +158,11 @@ public class CharacterAgent : Agent {
                 || velocityDifference > targetPair.maxAngularVel))
                 EndEpisode();
         }
-        targetReward = targetReward / totalWeights;
+        targetsReward = targetsReward / totalWeights;
 
         //Debug.Log("Targets reward: " + targetReward);
 
-        return targetReward;
+        return targetsReward;
     }
 
     private float TouchingGroundRewardMultiplier() {
