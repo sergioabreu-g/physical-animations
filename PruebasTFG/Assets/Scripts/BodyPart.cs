@@ -71,6 +71,10 @@ public class BodyPart : MonoBehaviour
         _torquePD.targetRot = Quaternion.Euler(transformedRotation);
     }
 
+    public void SetTargetRotation(Quaternion rotation) {
+        _torquePD.targetRot = rotation;
+    }
+
     public Vector3 GetJointNormalizedRotation() {
         Vector3 jointRot = transform.localRotation.eulerAngles;
 
