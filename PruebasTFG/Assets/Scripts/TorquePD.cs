@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TorquePD : MonoBehaviour
-{
-    public float frequency = 6, damping = 1, maxTorque = 500;
+public class TorquePD : MonoBehaviour {
     public bool localRotation = true;
     public Quaternion targetRot;
 
+    public float rotP = 1000, rotI = 0, rotD = 1500, rotIRate = 0;
+    public float velP = 0.05f, velI = 0, velD = 0.001f, velIRate = 0;
+
+    private Vector3 rotPreviousError, rotIntegral = Vector3.zero;
+    private Vector3 velPreviousError, velIntegral = Vector3.zero;
+
+    public float maxTorque = 500;
+
     private Rigidbody _rb;
-    private float _kp = 1.0f, _kd = 0.1f;
     private Quaternion _fixedTargetRot;
 
     private void Start() {
@@ -17,16 +22,16 @@ public class TorquePD : MonoBehaviour
     }
 
     public void FixedUpdate() {
-        _fixedTargetRot = localRotation ? transform.parent.rotation * targetRot : targetRot;
+        Vector3 rotCorrection = RotationPID();
+        Vector3 velCorrection = AngularVelocityPID();
+        Vector3 finalTorque = rotCorrection + velCorrection;
+        finalTorque *= Time.fixedDeltaTime;
 
-        _kp = (6f * frequency) * (6f * frequency) * 0.25f;
-        _kd = 4.5f * frequency * damping;
-        float dt = Time.fixedDeltaTime;
-        float g = 1 / (1 + _kd * dt + _kp * dt * dt);
-        float ksg = _kp * g;
-        float kdg = (_kd + _kp * dt) * g;
-        Vector3 x;
-        float xMag;
+        _rb.AddTorque(Vector3.ClampMagnitude(rotCorrection + velCorrection, maxTorque));
+    }
+
+    private Vector3 RotationPID() {
+        _fixedTargetRot = localRotation ? transform.parent.rotation * targetRot : targetRot;
 
         Quaternion q = _fixedTargetRot * Quaternion.Inverse(transform.rotation);
         // Q can be the-long-rotation-around-the-sphere eg. 350 degrees
@@ -39,15 +44,30 @@ public class TorquePD : MonoBehaviour
             q.z = -q.z;
             q.w = -q.w;
         }
-        q.ToAngleAxis(out xMag, out x);
-        x.Normalize();
-        x *= Mathf.Deg2Rad;
-        Vector3 pidv = _kp * x * xMag - _kd * _rb.angularVelocity;
-        Quaternion rotInertia2World = _rb.inertiaTensorRotation * transform.rotation;
+        q.ToAngleAxis(out float xMag, out Vector3 error);
+        error.Normalize();
+        error *= Mathf.Deg2Rad;
+        error *= xMag;
+        rotIntegral += error * rotIRate;
+        Vector3 pidv = rotP * error + rotI * rotIntegral + rotD * (error - rotPreviousError);
+
+
+        Quaternion rotInertia2World = _rb.inertiaTensorRotation * _rb.rotation;
         pidv = Quaternion.Inverse(rotInertia2World) * pidv;
         pidv.Scale(_rb.inertiaTensor);
         pidv = rotInertia2World * pidv;
 
-        _rb.AddTorque(Vector3.ClampMagnitude(pidv, maxTorque));
+        rotPreviousError = error;
+
+        return pidv;
+    }
+
+    private Vector3 AngularVelocityPID() {
+        Vector3 error = -_rb.angularVelocity;
+        velIntegral += error * velIRate;
+        Vector3 angularVelCorrection = velP * error + velI * velIntegral + velD * (error - velPreviousError);
+
+        velPreviousError = error;
+        return angularVelCorrection;
     }
 }

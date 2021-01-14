@@ -4812,11 +4812,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4829,11 +4835,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4846,11 +4858,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4863,11 +4881,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4880,11 +4904,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4897,11 +4927,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4914,11 +4950,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4931,11 +4973,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4948,11 +4996,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4965,11 +5019,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4982,11 +5042,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4999,11 +5065,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5016,11 +5088,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5033,11 +5111,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5050,11 +5134,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5067,11 +5157,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5084,11 +5180,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043851372103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5101,11 +5203,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 6
-  damping: 1
-  maxTorque: 500
   localRotation: 1
   targetRot: {x: 0, y: 0, z: 0, w: 0}
+  rotP: 1000
+  rotI: 0
+  rotD: 1500
+  rotIRate: 0
+  velP: 0.05
+  velI: 0
+  velD: 0.001
+  velIRate: 0
+  maxTorque: 500
 --- !u!114 &6833581043894349205
 MonoBehaviour:
   m_ObjectHideFlags: 0
