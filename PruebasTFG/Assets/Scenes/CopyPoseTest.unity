@@ -3862,7 +3862,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6833581042989057971}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.57, y: 0, z: 0}
+  m_LocalPosition: {x: 0.57, y: 0.233, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6439998749400299858}
@@ -3910,9 +3910,9 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  _solverIterations: 20
-  _velSolverIterations: 20
-  _maxAngularVelocity: 50
+  _solverIterations: 30
+  _velSolverIterations: 30
+  _maxAngularVelocity: 100
   _touchRewardMultiplier: 0.7
   _matchRotationsWeight: 0.7
   _matchPositionWeight: 0.15
@@ -4812,15 +4812,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372081
@@ -4835,15 +4835,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372083
@@ -4858,15 +4858,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372088
@@ -4881,15 +4881,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372089
@@ -4904,15 +4904,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372090
@@ -4927,15 +4927,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372091
@@ -4950,15 +4950,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372092
@@ -4973,15 +4973,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372093
@@ -4996,15 +4996,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372094
@@ -5019,15 +5019,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372095
@@ -5042,15 +5042,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372096
@@ -5065,15 +5065,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372098
@@ -5088,15 +5088,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372099
@@ -5111,15 +5111,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372100
@@ -5134,15 +5134,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372101
@@ -5157,15 +5157,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372102
@@ -5180,15 +5180,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043851372103
@@ -5203,15 +5203,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localRotation: 1
+  localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 1000
+  rotP: 3000
   rotI: 0
-  rotD: 1500
+  rotD: 500
   rotIRate: 0
-  velP: 0.05
+  velP: 0.03
   velI: 0
-  velD: 0.001
+  velD: 0.03
   velIRate: 0
   maxTorque: 500
 --- !u!114 &6833581043894349205

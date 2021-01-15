@@ -16,24 +16,26 @@ public class TorquePD : MonoBehaviour {
 
     private Rigidbody _rb;
     private Quaternion _fixedTargetRot;
+    private ConfigurableJoint _joint;
 
     private void Start() {
         _rb = GetComponent<Rigidbody>();
+        _joint = GetComponent<ConfigurableJoint>();
     }
 
     public void FixedUpdate() {
         Vector3 rotCorrection = RotationPID();
         Vector3 velCorrection = AngularVelocityPID();
         Vector3 finalTorque = rotCorrection + velCorrection;
-        finalTorque *= Time.fixedDeltaTime;
 
-        _rb.AddTorque(Vector3.ClampMagnitude(rotCorrection + velCorrection, maxTorque));
+        _rb.AddTorque(Vector3.ClampMagnitude(finalTorque, maxTorque));
     }
 
     private Vector3 RotationPID() {
-        _fixedTargetRot = localRotation ? transform.parent.rotation * targetRot : targetRot;
+        Rigidbody parentRb = _joint.connectedBody;
+        _fixedTargetRot = localRotation ? parentRb.rotation * targetRot : targetRot;
 
-        Quaternion q = _fixedTargetRot * Quaternion.Inverse(transform.rotation);
+        Quaternion q = _fixedTargetRot * Quaternion.Inverse(_rb.rotation);
         // Q can be the-long-rotation-around-the-sphere eg. 350 degrees
         // We want the equivalant short rotation eg. -10 degrees
         // Check if rotation is greater than 190 degees == q.w is negative
