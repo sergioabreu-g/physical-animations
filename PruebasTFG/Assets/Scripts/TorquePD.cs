@@ -28,7 +28,7 @@ public class TorquePD : MonoBehaviour {
         Vector3 velCorrection = AngularVelocityPID();
         Vector3 finalTorque = rotCorrection + velCorrection;
 
-        _rb.AddTorque(Vector3.ClampMagnitude(finalTorque, maxTorque));
+        _rb.AddTorque(Vector3.ClampMagnitude(finalTorque, maxTorque), ForceMode.VelocityChange);
     }
 
     private Vector3 RotationPID() {
@@ -53,19 +53,17 @@ public class TorquePD : MonoBehaviour {
         rotIntegral += error * rotIRate;
         Vector3 pidv = rotP * error + rotI * rotIntegral + rotD * (error - rotPreviousError);
 
-
         Quaternion rotInertia2World = _rb.inertiaTensorRotation * _rb.rotation;
         pidv = Quaternion.Inverse(rotInertia2World) * pidv;
         pidv.Scale(_rb.inertiaTensor);
         pidv = rotInertia2World * pidv;
 
         rotPreviousError = error;
-
         return pidv;
     }
 
     private Vector3 AngularVelocityPID() {
-        Vector3 error = -_rb.angularVelocity;
+        Vector3 error = _joint.connectedBody.angularVelocity - _rb.angularVelocity;
         velIntegral += error * velIRate;
         Vector3 angularVelCorrection = velP * error + velI * velIntegral + velD * (error - velPreviousError);
 

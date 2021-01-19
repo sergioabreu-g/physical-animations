@@ -3883,7 +3883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 268
+    VectorObservationSize: 273
     NumStackedVectorObservations: 1
     VectorActionSize: 26000000
     VectorActionDescriptions: []
@@ -3910,8 +3910,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  _solverIterations: 30
-  _velSolverIterations: 30
+  _solverIterations: 5
+  _velSolverIterations: 1
   _maxAngularVelocity: 100
   _touchRewardMultiplier: 0.7
   _matchRotationsWeight: 0.7
@@ -4814,15 +4814,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4837,15 +4837,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4860,15 +4860,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4883,15 +4883,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4906,15 +4906,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4929,15 +4929,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4952,15 +4952,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4975,15 +4975,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4998,15 +4998,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5021,15 +5021,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,15 +5044,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5067,15 +5067,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5090,15 +5090,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5113,15 +5113,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5136,15 +5136,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5159,15 +5159,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5182,15 +5182,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043851372103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5205,15 +5205,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localRotation: 0
   targetRot: {x: 0, y: 0, z: 0, w: 0}
-  rotP: 3000
+  rotP: 1800
   rotI: 0
-  rotD: 500
+  rotD: 0
   rotIRate: 0
-  velP: 0.03
+  velP: 1
   velI: 0
-  velD: 0.03
+  velD: 0.05
   velIRate: 0
-  maxTorque: 500
+  maxTorque: 25
 --- !u!114 &6833581043894349205
 MonoBehaviour:
   m_ObjectHideFlags: 0

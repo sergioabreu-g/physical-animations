@@ -214,16 +214,16 @@ public class CharacterAgent : Agent {
 
     void DefineObservationActionSpaces() {
         // Observation Space
-        int physicalBoneRotations = _bodyParts.Length * 3;
-        int relativeBonePos = _bodyParts.Length * 3;
+        int physicalBoneRotations = (_bodyParts.Length - 1) * 3;
+        int relativeBonePos = (_bodyParts.Length - 1) * 3;
         int angularVels = _bodyParts.Length * 3;
         int vels = _bodyParts.Length * 3;
         int touchingGrounds = _bodyParts.Length;
 
-        int targetRelPositions = _targets.Length * 3 - 3;
-        int targetRelRotations = _targets.Length * 3 - 3;
+        int targetRelPositions = (_targets.Length) * 3;
+        int targetRelRotations = (_targets.Length) * 4;
 
-        int balanceRot = 3;
+        int balanceRot = 4;
 
         _behaviorParameters.BrainParameters.VectorObservationSize =
             physicalBoneRotations + relativeBonePos + balanceRot + angularVels + vels
@@ -262,22 +262,18 @@ public class CharacterAgent : Agent {
         foreach (TargetPair targetPair in _targets) {
             if (targetPair.bodyPart == _physicalRoot) {
                 sensor.AddObservation(targetPair.target.position - targetPair.bodyPart.position);
-                sensor.AddObservation(Quaternion.FromToRotation(targetPair.bodyPart.transform.forward, targetPair.target.transform.forward).eulerAngles / 360);
+                sensor.AddObservation(targetPair.target.rotation * Quaternion.Inverse(targetPair.bodyPart.rotation));
                 continue;
             }
 
             sensor.AddObservation(_physicalRoot.InverseTransformDirection(targetPair.target.position - targetPair.bodyPart.position));
-
-            Vector3 bodyForward = _physicalRoot.InverseTransformDirection(targetPair.bodyPart.transform.forward);
-            Vector3 targetForward = _physicalRoot.InverseTransformDirection(targetPair.target.transform.forward);
-
-            sensor.AddObservation(Quaternion.FromToRotation(bodyForward, targetForward).eulerAngles / 360);
+            sensor.AddObservation(targetPair.target.rotation * Quaternion.Inverse(targetPair.bodyPart.rotation));
         }
 
         // BALANCE
         Vector3 _localBalanceVec = _physicalRoot.InverseTransformDirection(_balanceVector.normalized);
         Vector3 _localGravity = _physicalRoot.InverseTransformDirection(-Physics.gravity.normalized);
-        Vector3 _balanceRot = Quaternion.FromToRotation(_localBalanceVec, _localGravity).eulerAngles / 360;
+        Quaternion _balanceRot = Quaternion.FromToRotation(_localBalanceVec, _localGravity);
         sensor.AddObservation(_balanceRot);
     }
 
