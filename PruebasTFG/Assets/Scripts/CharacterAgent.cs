@@ -106,7 +106,7 @@ public class CharacterAgent : Agent {
 
         //Debug.Log("Total reward: " + totalReward);
          
-        AddReward(totalReward);
+        AddReward(totalReward * Time.fixedDeltaTime);
     }
 
     private float TargetsReward() {

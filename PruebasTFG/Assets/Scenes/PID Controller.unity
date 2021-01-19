@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe00bfa4bff244e47a3fcfa1770afb90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRelativeRotations: {x: 0, y: 0, z: 0}
+  targetRelativeRotations: {x: -4, y: 0, z: 0}
   useTarget: 0
   target: {fileID: 1384028682}
 --- !u!114 &1552262303

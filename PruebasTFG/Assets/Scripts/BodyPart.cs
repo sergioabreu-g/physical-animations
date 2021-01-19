@@ -52,9 +52,9 @@ public class BodyPart : MonoBehaviour
     }
 
     public void SetTargetRotation(float x, float y, float z) {
-        x = (x + 1f) * 0.5f;
-        y = (y + 1f) * 0.5f;
-        z = (z + 1f) * 0.5f;
+        x = (x + 1f) / 2;
+        y = (y + 1f) / 2;
+        z = (z + 1f) / 2;
 
         var xRot = Mathf.Lerp(joint.lowAngularXLimit.limit, joint.highAngularXLimit.limit, x);
         var yRot = Mathf.Lerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, y);
@@ -68,11 +68,11 @@ public class BodyPart : MonoBehaviour
                                     + joint.secondaryAxis.normalized * yRot
                                     + thirdAxis * zRot;
 
-        _torquePD.targetRot = Quaternion.Euler(transformedRotation);
+        joint.targetRotation = Quaternion.Euler(transformedRotation);
     }
 
     public void SetTargetRotation(Quaternion rotation) {
-        _torquePD.targetRot = rotation;
+        ConfigurableJointExtensions.SetTargetRotationLocal(joint, rotation, initialRotation);
     }
 
     public Vector3 GetJointNormalizedRotation() {

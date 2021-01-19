@@ -3080,14 +3080,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -3238,14 +3238,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -3526,14 +3526,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -3666,14 +3666,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -4147,14 +4147,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -4350,14 +4350,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -4485,14 +4485,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -4612,14 +4612,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -4760,14 +4760,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -4807,7 +4807,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2331344309362002396}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4830,7 +4830,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214333075715045844}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4853,7 +4853,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2458008917109145462}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4876,7 +4876,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4632863701251361446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4899,7 +4899,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8648875562570959709}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4922,7 +4922,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3878143564418113584}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4522491751709044025}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4968,7 +4968,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6577183768658341501}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -4991,7 +4991,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2431093970541979589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5014,7 +5014,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7716357405851080107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5037,7 +5037,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016467489103265347}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5083,7 +5083,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7229042906119408269}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5106,7 +5106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741446190387608927}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5129,7 +5129,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7356483693341944924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5152,7 +5152,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3193036626927691469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5175,7 +5175,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4481971987549237631}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c668149c020eabc469d62d5e9055d759, type: 3}
   m_Name: 
@@ -5319,14 +5319,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -5463,14 +5463,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -5608,14 +5608,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -5797,14 +5797,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -5942,14 +5942,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -6087,14 +6087,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -6232,14 +6232,14 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
-    positionDamper: 0
-    maximumForce: 0
+    positionSpring: 500
+    positionDamper: 50
+    maximumForce: 1000
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0

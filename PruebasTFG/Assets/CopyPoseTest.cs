@@ -23,7 +23,7 @@ public class CopyPoseTest : MonoBehaviour
     {
         for (int i = 0; i < bodyParts.Length; i++) {
             if (bodyParts[i].joint != null)
-                bodyParts[i].SetTargetRotation(targets[i].rotation);
+                bodyParts[i].SetTargetRotation(targets[i].localRotation);
         }
     }
 }
