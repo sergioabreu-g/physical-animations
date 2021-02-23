@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(TorquePD))]
 public class BodyPart : MonoBehaviour
 {
     public Rigidbody rb;
+    public Rigidbody animatedEquivalent;
     public ConfigurableJoint joint;
-    public bool canTouchGround = false;
 
     [HideInInspector]
     public Quaternion initialRotation;
@@ -21,12 +20,7 @@ public class BodyPart : MonoBehaviour
     public bool touchingGround = false;
     private int touchCount = 0;
 
-    private float _relativeStrength = 1;
-    private TorquePD _torquePD;
-
     public void Start() {
-        _torquePD = GetComponent<TorquePD>();
-
         initialRotation = transform.localRotation;
         initialPosition = transform.position;
 
@@ -36,19 +30,26 @@ public class BodyPart : MonoBehaviour
         }
     }
 
-    public void Reset() {
+    public void Reset(bool setToCurrentAnimationFrame = true) {
         rb.angularVelocity = Vector3.zero;
         rb.velocity = Vector3.zero;
 
-        rb.transform.localRotation = initialRotation;
-        rb.transform.position = initialPosition;
+        if (setToCurrentAnimationFrame) {
+            transform.localRotation = animatedEquivalent.transform.localRotation;
+            transform.position = animatedEquivalent.transform.position;
 
-        if (joint != null) {
-            SetTargetRotation(0, 0, 0);
+            if (joint != null) {
+                SetTargetRotation(animatedEquivalent.transform.localRotation);
+            }
         }
+        else {
+            transform.localRotation = initialRotation;
+            transform.position = initialPosition;
 
-        touchCount = 0;
-        touchingGround = false;
+            if (joint != null) {
+                SetTargetRotation(initialRotation);
+            }
+        }
     }
 
     public void SetTargetRotation(float x, float y, float z) {
@@ -60,15 +61,7 @@ public class BodyPart : MonoBehaviour
         var yRot = Mathf.Lerp(-joint.angularYLimit.limit, joint.angularYLimit.limit, y);
         var zRot = Mathf.Lerp(-joint.angularZLimit.limit, joint.angularZLimit.limit, z);
 
-        if (joint.secondaryAxis == Vector3.zero || joint.axis == Vector3.zero)
-            Debug.LogWarning("Joint axes cannot be zero.");
-
-        Vector3 thirdAxis = Vector3.Cross(joint.axis, joint.secondaryAxis).normalized;
-        Vector3 transformedRotation = joint.axis.normalized * xRot
-                                    + joint.secondaryAxis.normalized * yRot
-                                    + thirdAxis * zRot;
-
-        joint.targetRotation = Quaternion.Euler(transformedRotation);
+        joint.targetRotation = Quaternion.Euler(xRot, yRot, zRot);
     }
 
     public void SetTargetRotation(Quaternion rotation) {

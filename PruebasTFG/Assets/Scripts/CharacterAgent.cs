@@ -1,53 +1,44 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Policies;
-using System;
+using Unity.MLAgents.Sensors;
+using UnityEngine;
 
 public class CharacterAgent : Agent {
     [Header("--- GENERAL ---")]
+    [Tooltip("Remember to also configure the Fixed Time Step in the project config.")]
     [SerializeField] private int _solverIterations = 13;
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
-    [SerializeField] private float _touchRewardMultiplier = 0.7f;
-    [SerializeField] private float _matchRotationsWeight = 0.7f,
-                                    _matchPositionWeight = 0.15f, 
-                                    _matchVelocityWeight = 0.15f;
 
+    [Header("--- Reward ---")]
+    [SerializeField] private float _maxCoMDistance = 0.8f;
+    [SerializeField] private float _maxRootRotationDifference = 70;
+
+    [SerializeField]
+    private float _rotationRewardConstant = -2,
+                    _angularVelRewardConstant = -0.1f,
+                    _centerOfMassConstant = -10;
+
+    [SerializeField] private float _rotationsRewardWeight = 0.7f,
+                                    _angularVelsRewardWeight = 0.15f,
+                                    _centerOfMassRewardWeight = 0.15f;
+
+    private Vector3 _CoM, _refCoM;
 
     private BehaviorParameters _behaviorParameters;
 
     [Header("--- BODY ---")]
-    [SerializeField] private Transform _physicalRoot;
-    [SerializeField] private Transform _animatedRoot;
-
-    private Vector3 _CoM, _CoS;  // Center of Mass & Center of Support
-    private Vector3 _balanceVector;
-    float _balanceAngle;
+    [SerializeField] private Rigidbody _physicalRoot;
+    [SerializeField] private Rigidbody _animatedRoot;
     
     [Tooltip("IMPORTANT: The first BodyPart must be the root of the body.")]
     [SerializeField] private BodyPart[] _bodyParts;
-    public List<BodyPart> SupportBasis { get; private set; }
 
     [Header("--- ANIMATORS ---")]
     [SerializeField] private Animator _animatedAnimator;
     [SerializeField] private Animator _physicalAnimator;
-
-    [Header("--- TARGETS ---")]
-    [SerializeField] private TargetPair[] _targets;
-
-    [Serializable]
-    public struct TargetPair {
-        public Rigidbody bodyPart;
-        public Rigidbody target;
-        public float rewardWeight;
-        public float maxDistance;
-        public float maxAngle;
-        public float maxAngularVel;
-        public bool endEpisode;
-    }
 
 
     private void OnValidate() {
@@ -58,9 +49,9 @@ public class CharacterAgent : Agent {
             if (_physicalAnimator == null) _physicalAnimator = animators[1];
 
             if (_animatedRoot == null)
-                _animatedRoot = _animatedAnimator.GetBoneTransform(HumanBodyBones.Hips);
+                _animatedRoot = _animatedAnimator.GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
             if (_physicalRoot == null)
-                _physicalRoot = _physicalAnimator.GetBoneTransform(HumanBodyBones.Hips);
+                _physicalRoot = _physicalAnimator.GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
         }
 
         if (_bodyParts.Length == 0) SetupBodyParts();
@@ -80,7 +71,7 @@ public class CharacterAgent : Agent {
             _bodyParts[i].rb = rigidbodies[i];
             _bodyParts[i].joint = rigidbodies[i].gameObject.GetComponent<ConfigurableJoint>();
         }
-
+        
         Debug.Log("Body parts automatically set up. You need to manually assign the peer animated bones.");
     }
 
@@ -90,120 +81,88 @@ public class CharacterAgent : Agent {
             bodyPart.rb.solverVelocityIterations = _velSolverIterations;
             bodyPart.rb.maxAngularVelocity = _maxAngularVelocity;
         }
-
-        SupportBasis = new List<BodyPart>();
     }
 
     private void FixedUpdate() {
-        CalculateBalance();
-        CalculateReward();
+        UpdateReward();
+
+        if (CheckEndConditions())
+            EndEpisode();
     }
 
-    private void CalculateReward() {
-        float totalReward = TargetsReward();
-        //totalReward *= StrengthRewardMultiplier();
-        totalReward *= TouchingGroundRewardMultiplier();
-
-        //Debug.Log("Total reward: " + totalReward);
-         
+    private void UpdateReward() {
+        float totalReward = CalculateTotalReward();
         AddReward(totalReward * Time.fixedDeltaTime);
+
+        //Debug.Log("Total (fixed) reward: " + (totalReward * Time.fixedDeltaTime));
     }
+    
+    private float CalculateTotalReward()
+    {
+        float rotationsReward = 0;
+        float angularVelsReward = 0;
 
-    private float TargetsReward() {
-        float totalWeights = 0;
-        float targetsReward = 0;
-        foreach (TargetPair targetPair in _targets) {
-            bool doesSomething = false;
-
-            float positionReward = 1;
-            float dist = 0;
-            if (targetPair.maxDistance != 0) {
-                dist = Vector3.Distance(targetPair.bodyPart.position, targetPair.target.position);
-                positionReward = 1 - (dist / targetPair.maxDistance);
-                positionReward *= _matchPositionWeight;
-                doesSomething = true;
-            }
-
-            float rotationReward = 1;
-            float angle = 0;
-            if (targetPair.maxAngle != 0) {
-                angle = Quaternion.Angle(targetPair.bodyPart.rotation, targetPair.target.rotation);
-                rotationReward = 1 - (angle / targetPair.maxAngle);
-                rotationReward *= _matchRotationsWeight;
-                doesSomething = true;
-            }
-
-            float velocityReward = 1;
-            float velocityDifference = 0;
-            if (targetPair.maxAngularVel != 0) {
-                velocityDifference = Vector3.Distance(targetPair.bodyPart.angularVelocity, targetPair.target.angularVelocity);
-                velocityReward = 1 - (velocityDifference / targetPair.maxAngularVel);
-                velocityReward *= _matchVelocityWeight;
-                doesSomething = true;
-            }
-
-            if (!doesSomething || targetPair.rewardWeight == 0) {
-#if UNITY_EDITOR
-                Debug.LogWarning("Target Pair '" + targetPair.bodyPart.name + "' is having no effect on the reward, check your target configuration.");
-#endif
-                continue;
-            }
-
-            totalWeights += targetPair.rewardWeight;
-            targetsReward += targetPair.rewardWeight * (positionReward + rotationReward + velocityReward);
-
-            if (targetPair.endEpisode &&
-                (dist > targetPair.maxDistance
-                || angle > targetPair.maxAngle
-                || velocityDifference > targetPair.maxAngularVel))
-                EndEpisode();
+        foreach (BodyPart bp in _bodyParts)
+        {
+            rotationsReward += PartialRotationReward(bp);
+            angularVelsReward += PartialAngularVelReward(bp);
         }
-        targetsReward = targetsReward / totalWeights;
 
-        //Debug.Log("Targets reward: " + targetReward);
+        rotationsReward = Mathf.Exp(_rotationRewardConstant * rotationsReward);
+        angularVelsReward = Mathf.Exp(_angularVelRewardConstant * angularVelsReward);
+        float centerOfMassReward = CalculateCenterOfMassReward();
 
-        return targetsReward;
+        float totalReward = _rotationsRewardWeight * rotationsReward
+                            + _angularVelsRewardWeight * angularVelsReward
+                            + _centerOfMassRewardWeight * centerOfMassReward;
+
+        /*
+        Debug.Log("rotation: " + rotationsReward);
+        Debug.Log("vels: " + angularVelsReward);
+        Debug.Log("com: " + centerOfMassReward);
+        */
+
+        return totalReward;
     }
 
-    private float TouchingGroundRewardMultiplier() {
-        foreach (BodyPart bodyPart in _bodyParts)
-            if (bodyPart.touchingGround && !bodyPart.canTouchGround)
-                return _touchRewardMultiplier;
-
-        return 1;
+    private float PartialRotationReward(in BodyPart bp) {
+        return Mathf.Pow(Quaternion.Angle(bp.rb.rotation, bp.animatedEquivalent.rotation) * Mathf.Deg2Rad, 2);
     }
 
-    private void CalculateBalance() {
-        // Calculate the center of mass of the body
+    private float PartialAngularVelReward(in BodyPart bp)
+    {
+        return Mathf.Pow(Vector3.Distance(bp.rb.angularVelocity, bp.animatedEquivalent.angularVelocity), 2);
+    }
+
+    private float CalculateCenterOfMassReward()
+    {
+        float totalMass = 0;
         _CoM = Vector3.zero;
-        float c = 0f;
+        _refCoM = Vector3.zero;
 
-        foreach (BodyPart bodypart in _bodyParts) {
-            _CoM += bodypart.rb.worldCenterOfMass * bodypart.rb.mass;
-            c += bodypart.rb.mass;
-        }
-        _CoM /= c;
+        foreach (BodyPart bp in _bodyParts)
+        {
+            _CoM += bp.rb.position * bp.rb.mass;
+            _refCoM += bp.animatedEquivalent.position * bp.rb.mass;
 
-        _CoS = Vector3.zero;
-        SupportBasis.Clear();
-        // Calculate the center of support (generally the middle point of both feet)
-        foreach (BodyPart bodypart in _bodyParts) {
-            if (!bodypart.touchingGround)
-                continue;
-
-            SupportBasis.Add(bodypart);
-            _CoS += bodypart.rb.position;
+            totalMass += bp.rb.mass;
         }
 
-        if (SupportBasis.Count != 0) {
-            _CoS /= SupportBasis.Count;
+        _CoM /= totalMass;
+        _refCoM /= totalMass;
 
-            // Calculate the vector balance (the vector that goes from the CoS to the CoM)
-            _balanceVector = _CoM - _CoS;
+        float CoMReward = Mathf.Exp(_centerOfMassConstant * Mathf.Pow(Vector3.Distance(_CoM, _refCoM), 2));
 
-            // Calculate the balance angle (the angle deviation between the balance vector and the upright vector)
-            _balanceAngle = Vector3.Angle(_balanceVector, -Physics.gravity.normalized);
-        }
+        return CoMReward;
+    }
+
+    // Returns whether the episode must end or not given the current character state
+    private bool CheckEndConditions()
+    {
+        bool CoMDistance = Vector3.Distance(_CoM, _refCoM) > _maxCoMDistance;
+        bool rootRotDifference = Quaternion.Angle(_physicalRoot.rotation, _animatedRoot.rotation) > _maxRootRotationDifference;
+
+        return CoMDistance || rootRotDifference;
     }
 
     //Preparacion de un nuevo intento
@@ -213,21 +172,17 @@ public class CharacterAgent : Agent {
     }
 
     void DefineObservationActionSpaces() {
-        // Observation Space
-        int physicalBoneRotations = (_bodyParts.Length - 1) * 3;
-        int relativeBonePos = (_bodyParts.Length - 1) * 3;
-        int angularVels = _bodyParts.Length * 3;
-        int vels = _bodyParts.Length * 3;
+        // Observation space
+        int physicalRotations = _bodyParts.Length * 4;
+        int physicalVels = _bodyParts.Length * 3;
+        int physicalAngularVels = _bodyParts.Length * 3;
+        int physicalPositions = _bodyParts.Length * 3;
+
         int touchingGrounds = _bodyParts.Length;
 
-        int targetRelPositions = (_targets.Length) * 3;
-        int targetRelRotations = (_targets.Length) * 4;
-
-        int balanceRot = 4;
-
         _behaviorParameters.BrainParameters.VectorObservationSize =
-            physicalBoneRotations + relativeBonePos + balanceRot + angularVels + vels
-            + touchingGrounds + targetRelPositions + targetRelRotations;
+            physicalRotations + physicalVels + physicalAngularVels + physicalPositions
+            + touchingGrounds;
 
         // Action Space
         int targetRotations = 0;
@@ -244,37 +199,24 @@ public class CharacterAgent : Agent {
     //Recoleccion de informacion necesaria para tomar decisiones
     public override void CollectObservations(VectorSensor sensor) {
         // ROOT observations are different from the rest of the BodyParts
-        sensor.AddObservation(_bodyParts[0].rb.angularVelocity);
-        sensor.AddObservation(_bodyParts[0].rb.velocity);
+        sensor.AddObservation(_physicalRoot.rotation);
+        sensor.AddObservation(_physicalRoot.velocity);
+        sensor.AddObservation(_physicalRoot.angularVelocity);
+        sensor.AddObservation(_animatedRoot.position - _physicalRoot.position);
+
         sensor.AddObservation(_bodyParts[0].touchingGround);
 
         // BODY PARTS
         for (int i = 1; i < _bodyParts.Length; i++) {
-            sensor.AddObservation(_physicalRoot.InverseTransformPoint(_bodyParts[i].rb.position));
-            sensor.AddObservation(_bodyParts[i].GetJointNormalizedRotation());
-            sensor.AddObservation(_physicalRoot.InverseTransformDirection(_bodyParts[i].rb.velocity));
-            sensor.AddObservation(_physicalRoot.InverseTransformDirection(_bodyParts[i].rb.angularVelocity));
+            Quaternion worldToRootSpace = Quaternion.Inverse(_physicalRoot.rotation);
+            
+            sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.rotation);
+            sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.velocity);
+            sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.angularVelocity);
+            sensor.AddObservation(_bodyParts[i].rb.position - _physicalRoot.position);
 
             sensor.AddObservation(_bodyParts[i].touchingGround);
         }
-
-        // TARGETS
-        foreach (TargetPair targetPair in _targets) {
-            if (targetPair.bodyPart == _physicalRoot) {
-                sensor.AddObservation(targetPair.target.position - targetPair.bodyPart.position);
-                sensor.AddObservation(targetPair.target.rotation * Quaternion.Inverse(targetPair.bodyPart.rotation));
-                continue;
-            }
-
-            sensor.AddObservation(_physicalRoot.InverseTransformDirection(targetPair.target.position - targetPair.bodyPart.position));
-            sensor.AddObservation(targetPair.target.rotation * Quaternion.Inverse(targetPair.bodyPart.rotation));
-        }
-
-        // BALANCE
-        Vector3 _localBalanceVec = _physicalRoot.InverseTransformDirection(_balanceVector.normalized);
-        Vector3 _localGravity = _physicalRoot.InverseTransformDirection(-Physics.gravity.normalized);
-        Quaternion _balanceRot = Quaternion.FromToRotation(_localBalanceVec, _localGravity);
-        sensor.AddObservation(_balanceRot);
     }
 
     //Ejecuta las acciones y determina las recompensas. Recibe un vector con la información necesaria para llevar a cabo las acciones

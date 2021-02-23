@@ -2953,8 +2953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581042132610374}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 0}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3002,8 +3002,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581042183266019}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581042183266017}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3147,8 +3147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581042492082518}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581042492082517}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3415,8 +3415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581042668150505}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581042668150506}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3435,8 +3435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581042717899250}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581042717899249}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3703,8 +3703,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581042798909293}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581042798909295}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3847,8 +3847,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581042984458886}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581042984458888}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3883,7 +3883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 273
+    VectorObservationSize: 266
     NumStackedVectorObservations: 1
     VectorActionSize: 26000000
     VectorActionDescriptions: []
@@ -3913,12 +3913,16 @@ MonoBehaviour:
   _solverIterations: 5
   _velSolverIterations: 1
   _maxAngularVelocity: 100
-  _touchRewardMultiplier: 0.7
-  _matchRotationsWeight: 0.7
-  _matchPositionWeight: 0.15
-  _matchVelocityWeight: 0.15
-  _physicalRoot: {fileID: 4445651643937274689}
-  _animatedRoot: {fileID: 4445651644620636940}
+  _maxCoMDistance: 0.8
+  _maxRootRotationDifference: 70
+  _rotationRewardConstant: -2
+  _angularVelRewardConstant: -0.1
+  _centerOfMassConstant: -10
+  _rotationsRewardWeight: 0.7
+  _angularVelsRewardWeight: 0.15
+  _centerOfMassRewardWeight: 0.15
+  _physicalRoot: {fileID: 6833581042132610374}
+  _animatedRoot: {fileID: 3871219447675761960}
   _bodyParts:
   - {fileID: 6833581042132610371}
   - {fileID: 6833581042717899247}
@@ -3941,35 +3945,6 @@ MonoBehaviour:
   - {fileID: 6833581042798909296}
   _animatedAnimator: {fileID: 6833581043300344223}
   _physicalAnimator: {fileID: 1134718441844284261}
-  _targets:
-  - bodyPart: {fileID: 6833581042132610374}
-    target: {fileID: 3871219447675761960}
-    rewardWeight: 1
-    maxDistance: 0.7
-    maxAngle: 70
-    maxAngularVel: 10
-    endEpisode: 1
-  - bodyPart: {fileID: 6833581043788793984}
-    target: {fileID: 3871219447735076149}
-    rewardWeight: 1
-    maxDistance: 0.8
-    maxAngle: 80
-    maxAngularVel: 10
-    endEpisode: 0
-  - bodyPart: {fileID: 6833581042668150505}
-    target: {fileID: 3871219447143358944}
-    rewardWeight: 0.7
-    maxDistance: 0.8
-    maxAngle: 90
-    maxAngularVel: 15
-    endEpisode: 0
-  - bodyPart: {fileID: 6833581042984458886}
-    target: {fileID: 3871219447247997424}
-    rewardWeight: 0.7
-    maxDistance: 0.8
-    maxAngle: 90
-    maxAngularVel: 15
-    endEpisode: 0
 --- !u!1 &6833581042989057971
 GameObject:
   m_ObjectHideFlags: 0
@@ -4055,8 +4030,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581043198553980}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581043198553979}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -4387,8 +4362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581043466548168}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581043466548170}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -4407,8 +4382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581043605395853}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581043605395852}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -4649,8 +4624,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581043788793984}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581043788793985}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -4682,8 +4657,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581043826817863}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581043826817862}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -5227,8 +5202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581043894349208}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581043894349207}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -5372,8 +5347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581043983526186}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581043983526185}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -5516,8 +5491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581044045292001}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581044045292000}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -5705,8 +5680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581044151779356}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581044151779355}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -5850,8 +5825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581044165426237}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581044165426236}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -5995,8 +5970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581044199229743}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581044199229742}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -6140,8 +6115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6833581044240706407}
+  animatedEquivalent: {fileID: 0}
   joint: {fileID: 6833581044240706406}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
