@@ -155,7 +155,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944659462036}
   animatedEquivalent: {fileID: 1642520764}
   joint: {fileID: 7740724944659462038}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -221,7 +220,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944041512383}
   animatedEquivalent: {fileID: 738055633}
   joint: {fileID: 0}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -382,7 +380,6 @@ MonoBehaviour:
   rb: {fileID: 7740724943815731631}
   animatedEquivalent: {fileID: 2010552}
   joint: {fileID: 7740724943815731628}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -528,7 +525,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945511211237}
   animatedEquivalent: {fileID: 1392743803}
   joint: {fileID: 7740724945511211234}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -689,7 +685,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944579198480}
   animatedEquivalent: {fileID: 186745113}
   joint: {fileID: 7740724944579198483}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -853,7 +848,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945701968830}
   animatedEquivalent: {fileID: 1755279398}
   joint: {fileID: 7740724945701968831}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -999,7 +993,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945566469022}
   animatedEquivalent: {fileID: 137607642}
   joint: {fileID: 7740724945566469023}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1177,7 +1170,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945505967300}
   animatedEquivalent: {fileID: 1552025905}
   joint: {fileID: 7740724945505967301}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1338,7 +1330,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944339696255}
   animatedEquivalent: {fileID: 830269705}
   joint: {fileID: 7740724944339696241}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1483,7 +1474,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945890232787}
   animatedEquivalent: {fileID: 1885878568}
   joint: {fileID: 7740724945890232784}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1647,7 +1637,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944924883316}
   animatedEquivalent: {fileID: 1193433730}
   joint: {fileID: 7740724944924883317}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1809,7 +1798,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944518025093}
   animatedEquivalent: {fileID: 1186924950}
   joint: {fileID: 7740724944518025090}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -1971,7 +1959,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945417158936}
   animatedEquivalent: {fileID: 871690601}
   joint: {fileID: 7740724945417158937}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2149,7 +2136,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945769696609}
   animatedEquivalent: {fileID: 253413290}
   joint: {fileID: 7740724945769696622}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2327,7 +2313,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945539787222}
   animatedEquivalent: {fileID: 15123862}
   joint: {fileID: 7740724945539787223}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2488,7 +2473,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944597342475}
   animatedEquivalent: {fileID: 472472994}
   joint: {fileID: 7740724944597342472}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2649,7 +2633,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945325085489}
   animatedEquivalent: {fileID: 1047543287}
   joint: {fileID: 7740724945325085491}
-  canTouchGround: 1
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -2748,14 +2731,18 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 3000
   _solverIterations: 12
   _velSolverIterations: 4
   _maxAngularVelocity: 50
-  _touchRewardMultiplier: 0.7
-  _matchRotationsWeight: 0.65
-  _matchPositionWeight: 0.15
-  _matchVelocityWeight: 0.2
+  _maxCoMDistance: 1
+  _maxRootRotationDifference: 70
+  _rotationRewardConstant: -2
+  _angularVelRewardConstant: -0.1
+  _centerOfMassConstant: -10
+  _rotationsRewardWeight: 0.7
+  _angularVelsRewardWeight: 0.15
+  _centerOfMassRewardWeight: 0.15
   _physicalRoot: {fileID: 7740724944041512383}
   _animatedRoot: {fileID: 738055633}
   _bodyParts:
@@ -2780,49 +2767,6 @@ MonoBehaviour:
   - {fileID: 7740724944659462025}
   _animatedAnimator: {fileID: 7740724945163075942}
   _physicalAnimator: {fileID: 4181031480526863260}
-  _targets:
-  - bodyPart: {fileID: 7740724944041512383}
-    target: {fileID: 738055633}
-    rewardWeight: 1
-    maxDistance: 0.5
-    maxAngle: 50
-    maxAngularVel: 25
-    endEpisode: 1
-  - bodyPart: {fileID: 7740724945682835577}
-    target: {fileID: 744793548}
-    rewardWeight: 1
-    maxDistance: 0.5
-    maxAngle: 50
-    maxAngularVel: 25
-    endEpisode: 0
-  - bodyPart: {fileID: 7740724944579198480}
-    target: {fileID: 186745113}
-    rewardWeight: 0.8
-    maxDistance: 0.6
-    maxAngle: 65
-    maxAngularVel: 25
-    endEpisode: 0
-  - bodyPart: {fileID: 7740724944339696255}
-    target: {fileID: 830269705}
-    rewardWeight: 0.8
-    maxDistance: 0.6
-    maxAngle: 65
-    maxAngularVel: 25
-    endEpisode: 0
-  - bodyPart: {fileID: 7740724944924883316}
-    target: {fileID: 1193433730}
-    rewardWeight: 0.8
-    maxDistance: 0.6
-    maxAngle: 65
-    maxAngularVel: 25
-    endEpisode: 0
-  - bodyPart: {fileID: 7740724945701968830}
-    target: {fileID: 1755279398}
-    rewardWeight: 0.8
-    maxDistance: 0.6
-    maxAngle: 65
-    maxAngularVel: 25
-    endEpisode: 0
 --- !u!114 &7740724944325388107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3081,7 +3025,6 @@ MonoBehaviour:
   rb: {fileID: 7740724944058498586}
   animatedEquivalent: {fileID: 1210431653}
   joint: {fileID: 7740724944058498584}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0
@@ -3226,7 +3169,6 @@ MonoBehaviour:
   rb: {fileID: 7740724945682835577}
   animatedEquivalent: {fileID: 744793548}
   joint: {fileID: 7740724945682835576}
-  canTouchGround: 0
   initialRotation: {x: 0, y: 0, z: 0, w: 0}
   initialPosition: {x: 0, y: 0, z: 0}
   initialAngularXDriveSpring: 0

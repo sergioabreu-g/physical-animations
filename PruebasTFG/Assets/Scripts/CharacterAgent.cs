@@ -84,7 +84,7 @@ public class CharacterAgent : Agent {
     }
 
     private void FixedUpdate() {
-        UpdateReward();
+        //UpdateReward();
 
         if (CheckEndConditions())
             EndEpisode();
@@ -92,7 +92,7 @@ public class CharacterAgent : Agent {
 
     private void UpdateReward() {
         float totalReward = CalculateTotalReward();
-        AddReward(totalReward * Time.fixedDeltaTime);
+        AddReward(totalReward);
 
         //Debug.Log("Total (fixed) reward: " + (totalReward * Time.fixedDeltaTime));
     }
@@ -221,6 +221,8 @@ public class CharacterAgent : Agent {
 
     //Ejecuta las acciones y determina las recompensas. Recibe un vector con la información necesaria para llevar a cabo las acciones
     public override void OnActionReceived(float[] vectorAction) {
+        UpdateReward();
+       
         int v = 0;
         foreach (BodyPart bodypart in _bodyParts) {
             if (bodypart.joint == null) continue;

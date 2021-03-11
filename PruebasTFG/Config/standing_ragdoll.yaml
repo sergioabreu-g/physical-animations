@@ -2,26 +2,26 @@ behaviors:
   StandingRagdoll:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 2048
-      buffer_size: 20480
-      learning_rate: 0.0003
-      beta: 0.005
-      epsilon: 0.15
+      batch_size: 1000
+      buffer_size: 20000
+      learning_rate: 0.0001
+      beta: 0.0005
+      epsilon: 0.2
       lambd: 0.95
-      num_epoch: 3
+      num_epoch: 2
       learning_rate_schedule: linear
     network_settings:
-      normalize: false
-      hidden_units: 512
-      num_layers: 4
+      normalize: true
+      hidden_units: 1024
+      num_layers: 2
       vis_encode_type: simple
     reward_signals:
       extrinsic:
-        gamma: 0.995
+        gamma: 0.99
         strength: 1.0
     keep_checkpoints: 5
     checkpoint_interval: 200000
-    max_steps: 20000000
-    time_horizon: 512
+    max_steps: 50000000
+    time_horizon: 1000
     summary_freq: 25000
     threaded: false
