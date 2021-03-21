@@ -7,6 +7,8 @@ public class BodyPart : MonoBehaviour
     public Rigidbody rb;
     public Rigidbody animatedEquivalent;
     public ConfigurableJoint joint;
+    public bool endEffector = false;
+    public bool canTouchGround = false;
 
     [HideInInspector]
     public Quaternion initialRotation;

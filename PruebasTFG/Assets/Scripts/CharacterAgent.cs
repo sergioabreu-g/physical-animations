@@ -13,17 +13,18 @@ public class CharacterAgent : Agent {
     [SerializeField] private float _maxAngularVelocity = 50;
 
     [Header("--- Reward ---")]
-    [SerializeField] private float _maxCoMDistance = 0.8f;
-    [SerializeField] private float _maxRootRotationDifference = 70;
+    [SerializeField] private float _maxCoMDistance = 2;
 
     [SerializeField]
     private float _rotationRewardConstant = -2,
                     _angularVelRewardConstant = -0.1f,
+                    _endEffectorRewardConstant = -40,
                     _centerOfMassConstant = -10;
 
-    [SerializeField] private float _rotationsRewardWeight = 0.7f,
-                                    _angularVelsRewardWeight = 0.15f,
-                                    _centerOfMassRewardWeight = 0.15f;
+    [SerializeField] private float _rotationsRewardWeight = 0.65f,
+                                    _angularVelsRewardWeight = 0.1f,
+                                    _endEffectorRewardWeight = 0.15f,
+                                    _centerOfMassRewardWeight = 0.1f;
 
     private Vector3 _CoM, _refCoM;
 
@@ -84,8 +85,6 @@ public class CharacterAgent : Agent {
     }
 
     private void FixedUpdate() {
-        //UpdateReward();
-
         if (CheckEndConditions())
             EndEpisode();
     }
@@ -97,23 +96,30 @@ public class CharacterAgent : Agent {
         //Debug.Log("Total (fixed) reward: " + (totalReward * Time.fixedDeltaTime));
     }
     
-    private float CalculateTotalReward()
+    public float CalculateTotalReward()
     {
         float rotationsReward = 0;
         float angularVelsReward = 0;
+        float endEffectorReward = 0;
 
-        foreach (BodyPart bp in _bodyParts)
-        {
-            rotationsReward += PartialRotationReward(bp);
+        Quaternion worldToRootSpace = Quaternion.Inverse(_physicalRoot.rotation);
+        Quaternion worldToRefRootSpace = Quaternion.Inverse(_animatedRoot.rotation);
+
+        foreach (BodyPart bp in _bodyParts) {
+            rotationsReward += PartialRotationReward(bp, worldToRootSpace, worldToRefRootSpace);
             angularVelsReward += PartialAngularVelReward(bp);
+            if (bp.endEffector)
+                endEffectorReward += PartialEndEffectorReward(bp);
         }
 
         rotationsReward = Mathf.Exp(_rotationRewardConstant * rotationsReward);
         angularVelsReward = Mathf.Exp(_angularVelRewardConstant * angularVelsReward);
+        endEffectorReward = Mathf.Exp(_endEffectorRewardConstant * endEffectorReward);
         float centerOfMassReward = CalculateCenterOfMassReward();
 
         float totalReward = _rotationsRewardWeight * rotationsReward
                             + _angularVelsRewardWeight * angularVelsReward
+                            + _endEffectorRewardWeight * endEffectorReward
                             + _centerOfMassRewardWeight * centerOfMassReward;
 
         /*
@@ -132,6 +138,11 @@ public class CharacterAgent : Agent {
     private float PartialAngularVelReward(in BodyPart bp)
     {
         return Mathf.Pow(Vector3.Distance(bp.rb.angularVelocity, bp.animatedEquivalent.angularVelocity), 2);
+    }
+
+    private float PartialEndEffectorReward(in BodyPart bp)
+    {
+        return Mathf.Pow(Vector3.Distance(bp.rb.position, bp.animatedEquivalent.position), 2);
     }
 
     private float CalculateCenterOfMassReward()
@@ -160,9 +171,18 @@ public class CharacterAgent : Agent {
     private bool CheckEndConditions()
     {
         bool CoMDistance = Vector3.Distance(_CoM, _refCoM) > _maxCoMDistance;
-        bool rootRotDifference = Quaternion.Angle(_physicalRoot.rotation, _animatedRoot.rotation) > _maxRootRotationDifference;
 
-        return CoMDistance || rootRotDifference;
+        bool groundContact = false;
+        foreach (BodyPart bp in _bodyParts)
+        {
+            if (!bp.canTouchGround && bp.touchingGround)
+            {
+                groundContact = true;
+                break;
+            }
+        }
+        
+        return CoMDistance || groundContact;
     }
 
     //Preparacion de un nuevo intento
@@ -178,11 +198,8 @@ public class CharacterAgent : Agent {
         int physicalAngularVels = _bodyParts.Length * 3;
         int physicalPositions = _bodyParts.Length * 3;
 
-        int touchingGrounds = _bodyParts.Length;
-
         _behaviorParameters.BrainParameters.VectorObservationSize =
-            physicalRotations + physicalVels + physicalAngularVels + physicalPositions
-            + touchingGrounds;
+            physicalRotations + physicalVels + physicalAngularVels + physicalPositions;
 
         // Action Space
         int targetRotations = 0;
@@ -204,25 +221,20 @@ public class CharacterAgent : Agent {
         sensor.AddObservation(_physicalRoot.angularVelocity);
         sensor.AddObservation(_animatedRoot.position - _physicalRoot.position);
 
-        sensor.AddObservation(_bodyParts[0].touchingGround);
-
         // BODY PARTS
+        Quaternion worldToRootSpace = Quaternion.Inverse(_physicalRoot.rotation);
         for (int i = 1; i < _bodyParts.Length; i++) {
-            Quaternion worldToRootSpace = Quaternion.Inverse(_physicalRoot.rotation);
-            
             sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.rotation);
             sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.velocity);
             sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.angularVelocity);
             sensor.AddObservation(_bodyParts[i].rb.position - _physicalRoot.position);
-
-            sensor.AddObservation(_bodyParts[i].touchingGround);
         }
     }
 
     //Ejecuta las acciones y determina las recompensas. Recibe un vector con la información necesaria para llevar a cabo las acciones
     public override void OnActionReceived(float[] vectorAction) {
         UpdateReward();
-       
+
         int v = 0;
         foreach (BodyPart bodypart in _bodyParts) {
             if (bodypart.joint == null) continue;
