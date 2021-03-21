@@ -106,7 +106,7 @@ public class CharacterAgent : Agent {
         Quaternion worldToRefRootSpace = Quaternion.Inverse(_animatedRoot.rotation);
 
         foreach (BodyPart bp in _bodyParts) {
-            rotationsReward += PartialRotationReward(bp, worldToRootSpace, worldToRefRootSpace);
+            rotationsReward += PartialRotationReward(bp);
             angularVelsReward += PartialAngularVelReward(bp);
             if (bp.endEffector)
                 endEffectorReward += PartialEndEffectorReward(bp);
