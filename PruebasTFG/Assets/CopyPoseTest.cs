@@ -5,7 +5,6 @@ using UnityEngine;
 public class CopyPoseTest : MonoBehaviour
 {
     public CharacterAgent agent;
-    public Transform[] targets;
     public BodyPart[] bodyParts;
 
     public float timeBetweenDebugs = 0.5f;
@@ -15,6 +14,7 @@ public class CopyPoseTest : MonoBehaviour
     void OnValidate()
     {
         bodyParts = GetComponentsInChildren<BodyPart>();
+        agent = GetComponent<CharacterAgent>();
     }
 
     private void Start() {
@@ -26,7 +26,7 @@ public class CopyPoseTest : MonoBehaviour
     {
         for (int i = 0; i < bodyParts.Length; i++) {
             if (bodyParts[i].joint != null)
-                bodyParts[i].SetTargetRotation(targets[i].localRotation);
+                bodyParts[i].SetTargetRotation(bodyParts[i].animatedEquivalent.transform.localRotation);
         }
 
         if (_debugCounter >= timeBetweenDebugs)

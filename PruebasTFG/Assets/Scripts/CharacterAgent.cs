@@ -11,9 +11,12 @@ public class CharacterAgent : Agent {
     [SerializeField] private int _solverIterations = 13;
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
+    [SerializeField] private bool _dynamicAnimation = false;
+
 
     [Header("--- Reward ---")]
-    [SerializeField] private float _maxCoMDistance = 2;
+    [SerializeField] private float _maxCoMDistance = 0.5f;
+    [SerializeField] private float _maxRootAngle = 70;
 
     [SerializeField]
     private float _rotationRewardConstant = -2,
@@ -171,6 +174,7 @@ public class CharacterAgent : Agent {
     private bool CheckEndConditions()
     {
         bool CoMDistance = Vector3.Distance(_CoM, _refCoM) > _maxCoMDistance;
+        bool rootAngle = Quaternion.Angle(_animatedRoot.rotation, _physicalRoot.rotation) > _maxRootAngle;
 
         bool groundContact = false;
         foreach (BodyPart bp in _bodyParts)
@@ -182,7 +186,7 @@ public class CharacterAgent : Agent {
             }
         }
         
-        return CoMDistance || groundContact;
+        return CoMDistance || rootAngle || groundContact;
     }
 
     //Preparacion de un nuevo intento
@@ -200,6 +204,9 @@ public class CharacterAgent : Agent {
 
         _behaviorParameters.BrainParameters.VectorObservationSize =
             physicalRotations + physicalVels + physicalAngularVels + physicalPositions;
+
+        if (_dynamicAnimation)
+            _behaviorParameters.BrainParameters.VectorObservationSize++;
 
         // Action Space
         int targetRotations = 0;
@@ -228,6 +235,13 @@ public class CharacterAgent : Agent {
             sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.velocity);
             sensor.AddObservation(worldToRootSpace * _bodyParts[i].rb.angularVelocity);
             sensor.AddObservation(_bodyParts[i].rb.position - _physicalRoot.position);
+        }
+
+        if (_dynamicAnimation)
+        {
+            float animationPercent = _animatedAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            animationPercent = animationPercent - Mathf.Floor(animationPercent);
+            sensor.AddObservation(animationPercent);
         }
     }
 
