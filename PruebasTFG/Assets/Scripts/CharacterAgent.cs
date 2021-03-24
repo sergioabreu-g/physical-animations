@@ -116,11 +116,11 @@ public class CharacterAgent : Agent {
                             + _angularVelsRewardWeight * angularVelsReward
                             + _centerOfMassRewardWeight * centerOfMassReward;
 
-        /*
-        Debug.Log("rotation: " + rotationsReward);
-        Debug.Log("vels: " + angularVelsReward);
-        Debug.Log("com: " + centerOfMassReward);
-        */
+        
+        //Debug.Log("rotation: " + rotationsReward);
+        // Debug.Log("vels: " + angularVelsReward);
+        //Debug.Log("com: " + centerOfMassReward);
+        
 
         return totalReward;
     }
