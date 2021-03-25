@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.00000039860606
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (5)
@@ -472,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f6ab30bf5a68f499049df648bee827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _academyFrequency: 8
+  _academyFrequency: 0
 --- !u!4 &363553649
 Transform:
   m_ObjectHideFlags: 0
@@ -506,6 +510,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.00000039860606
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (4)
@@ -743,6 +751,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.00000007916242
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (7)
@@ -980,6 +992,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.00000039860606
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (3)
@@ -1272,6 +1288,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.00000007916242
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (8)
@@ -1461,6 +1481,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (1)
@@ -1630,6 +1654,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.00000007916242
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (6)
@@ -1951,6 +1979,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (2)
@@ -2100,6 +2132,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7740724944325388104, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: MaxStep
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 31a120c1f2863a84baf4e73e1a29c781, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character
