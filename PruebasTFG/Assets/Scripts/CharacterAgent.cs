@@ -12,6 +12,9 @@ public class CharacterAgent : Agent {
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
     [SerializeField] private bool _dynamicAnimation = false;
+    [SerializeField] private bool _setAnimatedToPhysicalPos = false;
+
+    private Vector3 _animatedAnimatorStartPos;
 
 
     [Header("--- Reward ---")]
@@ -80,6 +83,8 @@ public class CharacterAgent : Agent {
     }
 
     void Start() {
+        _animatedAnimatorStartPos = _animatedAnimator.transform.position;
+
         foreach (BodyPart bodyPart in _bodyParts) {
             bodyPart.rb.solverIterations = _solverIterations;
             bodyPart.rb.solverVelocityIterations = _velSolverIterations;
@@ -88,6 +93,13 @@ public class CharacterAgent : Agent {
     }
 
     private void FixedUpdate() {
+        if (_setAnimatedToPhysicalPos) {
+            var animatedFixedPos = _physicalRoot.position;
+            animatedFixedPos.y = _animatedRoot.position.y;
+            _animatedAnimator.transform.position =
+                animatedFixedPos - _animatedRoot.transform.localPosition;
+        }
+
         if (CheckEndConditions())
             EndEpisode();
     }
@@ -191,6 +203,8 @@ public class CharacterAgent : Agent {
 
     //Preparacion de un nuevo intento
     public override void OnEpisodeBegin() {
+        _animatedAnimator.transform.position = _animatedAnimatorStartPos;
+
         foreach (BodyPart bodypart in _bodyParts)
             bodypart.Reset();
     }

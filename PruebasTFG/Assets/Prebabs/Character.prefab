@@ -118,12 +118,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -347,12 +347,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 20
+    maximumForce: 30
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 20
+    maximumForce: 30
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -494,12 +494,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 50
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 50
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -656,12 +656,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 15
+    maximumForce: 30
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 15
+    maximumForce: 30
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -821,12 +821,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -968,12 +968,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 80
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 80
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -1147,12 +1147,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 80
+    maximumForce: 120
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 80
+    maximumForce: 120
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -1309,12 +1309,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 15
+    maximumForce: 30
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 15
+    maximumForce: 30
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -1620,12 +1620,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -1783,12 +1783,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 80
+    maximumForce: 120
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 80
+    maximumForce: 120
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -1946,12 +1946,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 50
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 50
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -2125,12 +2125,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 70
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 70
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -2304,12 +2304,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 70
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 70
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -2466,12 +2466,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 100
+    maximumForce: 140
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 100
+    maximumForce: 140
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -2628,12 +2628,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 30
+    maximumForce: 60
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
@@ -2739,12 +2739,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 247
+    VectorObservationSize: 248
     NumStackedVectorObservations: 1
     VectorActionSize: 26000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: e00c3207e97ea4b4bb3937a8a34c3182, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: ea4bf5d5efce98842ac10444e253a197, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: StandingRagdoll
@@ -2765,11 +2765,12 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 300
+  MaxStep: 2500
   _solverIterations: 12
   _velSolverIterations: 4
   _maxAngularVelocity: 20
-  _dynamicAnimation: 0
+  _dynamicAnimation: 1
+  _setAnimatedToPhysicalPos: 1
   _maxCoMDistance: 0.5
   _maxRootAngle: 70
   _rotationRewardConstant: -2
@@ -3025,12 +3026,12 @@ ConfigurableJoint:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 80
   m_AngularYZDrive:
     serializedVersion: 3
     positionSpring: 400
     positionDamper: 40
-    maximumForce: 50
+    maximumForce: 80
   m_SlerpDrive:
     serializedVersion: 3
     positionSpring: 0
