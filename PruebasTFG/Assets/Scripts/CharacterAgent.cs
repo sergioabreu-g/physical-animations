@@ -11,6 +11,7 @@ public class CharacterAgent : Agent {
     [SerializeField] private int _solverIterations = 13;
     [SerializeField] private int _velSolverIterations = 13;
     [SerializeField] private float _maxAngularVelocity = 50;
+    [SerializeField] private float _targetVel = 1;
     [SerializeField] private bool _dynamicAnimation = false;
     [SerializeField] private bool _setAnimatedToPhysicalPos = false;
 
@@ -25,12 +26,14 @@ public class CharacterAgent : Agent {
     private float _rotationRewardConstant = -2,
                     _angularVelRewardConstant = -0.1f,
                     _endEffectorRewardConstant = -40,
-                    _centerOfMassConstant = -10;
+                    _centerOfMassConstant = -10,
+                    _targetVelConstant = -2.5f;
 
     [SerializeField] private float _rotationsRewardWeight = 0.65f,
                                     _angularVelsRewardWeight = 0.1f,
                                     _endEffectorRewardWeight = 0.15f,
-                                    _centerOfMassRewardWeight = 0.1f;
+                                    _centerOfMassRewardWeight = 0.1f,
+                                    _targetVelRewardWeight = 0;
 
     private Vector3 _CoM, _refCoM;
 
@@ -96,6 +99,8 @@ public class CharacterAgent : Agent {
         if (_setAnimatedToPhysicalPos) {
             var animatedFixedPos = _physicalRoot.position;
             animatedFixedPos.y = _animatedRoot.position.y;
+            animatedFixedPos.x = _animatedRoot.position.x;
+
             _animatedAnimator.transform.position =
                 animatedFixedPos - _animatedRoot.transform.localPosition;
         }
@@ -131,11 +136,13 @@ public class CharacterAgent : Agent {
         angularVelsReward = Mathf.Exp(_angularVelRewardConstant * angularVelsReward);
         endEffectorReward = Mathf.Exp(_endEffectorRewardConstant * endEffectorReward);
         float centerOfMassReward = CalculateCenterOfMassReward();
+        float targetVelReward = CalculateTargetVelReward();
 
         float totalReward = _rotationsRewardWeight * rotationsReward
                             + _angularVelsRewardWeight * angularVelsReward
                             + _endEffectorRewardWeight * endEffectorReward
-                            + _centerOfMassRewardWeight * centerOfMassReward;
+                            + _centerOfMassRewardWeight * centerOfMassReward
+                            + _targetVelRewardWeight * targetVelReward;
 
         /*
         Debug.Log("rotation: " + rotationsReward);
@@ -182,6 +189,11 @@ public class CharacterAgent : Agent {
         return CoMReward;
     }
 
+    public float CalculateTargetVelReward()
+    {
+        return Mathf.Exp(_targetVelConstant * Mathf.Pow(Mathf.Max(0, _targetVel - _physicalRoot.velocity.z), 2));
+    }
+
     // Returns whether the episode must end or not given the current character state
     private bool CheckEndConditions()
     {
@@ -206,7 +218,7 @@ public class CharacterAgent : Agent {
         _animatedAnimator.transform.position = _animatedAnimatorStartPos;
 
         foreach (BodyPart bodypart in _bodyParts)
-            bodypart.Reset();
+            bodypart.ResetPose();
     }
 
     void DefineObservationActionSpaces() {
@@ -256,6 +268,7 @@ public class CharacterAgent : Agent {
             float animationPercent = _animatedAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             animationPercent = animationPercent - Mathf.Floor(animationPercent);
             sensor.AddObservation(animationPercent);
+            //Debug.Log(animationPercent);
         }
     }
 

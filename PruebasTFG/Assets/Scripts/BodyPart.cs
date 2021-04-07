@@ -32,13 +32,15 @@ public class BodyPart : MonoBehaviour
         }
     }
 
-    public void Reset(bool setToCurrentAnimationFrame = true) {
+    public void ResetPose(bool setToCurrentAnimationFrame = true) {
+        rb.angularVelocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
+
         if (setToCurrentAnimationFrame) {
             transform.localRotation = animatedEquivalent.transform.localRotation;
             transform.position = animatedEquivalent.transform.position;
 
             rb.angularVelocity = animatedEquivalent.angularVelocity;
-            rb.velocity = animatedEquivalent.velocity;
 
             if (joint != null) {
                 SetTargetRotation(animatedEquivalent.transform.localRotation);
@@ -47,9 +49,6 @@ public class BodyPart : MonoBehaviour
         else {
             transform.localRotation = initialRotation;
             transform.position = initialPosition;
-
-            rb.angularVelocity = Vector3.zero;
-            rb.velocity = Vector3.zero;
 
             if (joint != null) {
                 SetTargetRotation(initialRotation);
