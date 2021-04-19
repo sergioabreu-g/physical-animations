@@ -2685,7 +2685,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 2e4bead992bd63a468265ce7841a3e31, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 1
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2771,19 +2771,19 @@ MonoBehaviour:
   _maxAngularVelocity: 20
   _targetVel: 0.8
   _dynamicAnimation: 1
-  _setAnimatedToPhysicalPos: 1
-  _maxCoMDistance: 1
-  _maxRootAngle: 80
+  _setAnimatedToPhysicalPos: 0
+  _maxCoMDistance: 1.5
+  _maxRootAngle: 100
   _rotationRewardConstant: -2
   _angularVelRewardConstant: -0.1
   _endEffectorRewardConstant: -40
   _centerOfMassConstant: -10
   _targetVelConstant: -2.5
-  _rotationsRewardWeight: 0.56
-  _angularVelsRewardWeight: 0.07
-  _endEffectorRewardWeight: 0.1
-  _centerOfMassRewardWeight: 0.07
-  _targetVelRewardWeight: 0.2
+  _rotationsRewardWeight: 0.65
+  _angularVelsRewardWeight: 0.1
+  _endEffectorRewardWeight: 0.15
+  _centerOfMassRewardWeight: 0.1
+  _targetVelRewardWeight: 0
   _physicalRoot: {fileID: 7740724944041512383}
   _animatedRoot: {fileID: 738055633}
   _bodyParts:

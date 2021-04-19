@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (4)
@@ -488,6 +492,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (8)
@@ -665,6 +673,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (5)
@@ -854,6 +866,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (2)
@@ -1011,6 +1027,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (1)
@@ -1168,6 +1188,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (6)
@@ -1357,6 +1381,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (7)
@@ -1641,6 +1669,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: 0.0000000027575886
       objectReference: {fileID: 0}
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character (3)
@@ -1923,6 +1955,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7740724944325388105, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 49f33f2d29ab5484da269d15401a09b9, type: 3}
     - target: {fileID: 7740724944325388106, guid: 9ee11269bf1819749a1bddb75ae4af85, type: 3}
       propertyPath: m_Name
       value: Character
